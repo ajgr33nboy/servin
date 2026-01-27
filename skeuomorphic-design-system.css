@@ -1,0 +1,1790 @@
+/*
+ * ============================================================================
+ * SKEUOMORPHIC DESIGN SYSTEM
+ * Inspired by iOS 6 & Mac OS X Mountain Lion
+ * ============================================================================
+ * 
+ * A comprehensive design system featuring:
+ * - Linen, brushed aluminum, leather, and felt textures
+ * - Glossy "lickable" gel buttons
+ * - Embossed and engraved typography
+ * - Dashboard-style widgets
+ * - Inset wells and metal panels
+ * 
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================================================ */
+
+:root {
+  /* -------------------------------------------------------------------------
+     Color Palette - iOS 6 / Mountain Lion Inspired
+     ------------------------------------------------------------------------- */
+  
+  /* Primary Blues */
+  --gel-blue: #007aff;
+  --gel-blue-highlight: #5ac8fa;
+  --gel-blue-shadow: #005ecb;
+  --gel-blue-glow: rgba(0, 122, 255, 0.35);
+  
+  /* Slate & Steel (Mountain Lion chrome) */
+  --slate-blue: #5e7ca1;
+  --steel-blue: #4b6a88;
+  --steel-dark: #3a5570;
+  
+  /* Graphite & Aluminum */
+  --graphite: #3d3d3d;
+  --graphite-light: #525252;
+  --aluminum: #c0c0c0;
+  --aluminum-light: #d8d8d8;
+  --aluminum-highlight: #e8e8e8;
+  --aluminum-dark: #a8a8a8;
+  
+  /* Linen & Cream (iOS Notes background) */
+  --linen-base: #f7f3ed;
+  --linen-shadow: #e8e2d8;
+  --linen-dark: #d9d3c9;
+  --cream: #f4ede1;
+  --cream-dark: #e8dfd1;
+  
+  /* Leather (iBooks, Calendar) */
+  --leather-dark: #4a3428;
+  --leather-mid: #5d4a3a;
+  --leather-light: #6b5545;
+  --leather-highlight: #7d6555;
+  --leather-stitch: #c4a882;
+  
+  /* Felt (Game Center) */
+  --felt-green: #0d7d37;
+  --felt-green-dark: #0a6830;
+  --felt-green-light: #10924a;
+  
+  /* Glass & Transparency */
+  --glass-white: rgba(255, 255, 255, 0.95);
+  --glass-white-mid: rgba(255, 255, 255, 0.85);
+  --glass-white-light: rgba(255, 255, 255, 0.6);
+  --glass-dark: rgba(0, 0, 0, 0.75);
+  
+  /* Status Colors */
+  --success-green: #34c759;
+  --success-dark: #248a3d;
+  --warning-orange: #ff9500;
+  --warning-dark: #c93400;
+  --error-red: #ff3b30;
+  --error-dark: #d70015;
+  
+  /* Text Colors */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #777777;
+  --text-light: #999999;
+  --text-inverse: #ffffff;
+  
+  /* -------------------------------------------------------------------------
+     Typography
+     ------------------------------------------------------------------------- */
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', 'Menlo', 'Consolas', monospace;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.8125rem;  /* 13px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 2rem;      /* 32px */
+  --text-4xl: 2.5rem;    /* 40px */
+  --text-5xl: 3rem;      /* 48px */
+  
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+  
+  /* Letter Spacing */
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  
+  /* -------------------------------------------------------------------------
+     Spacing & Layout
+     ------------------------------------------------------------------------- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Container */
+  --container-max: 1100px;
+  --nav-height: 60px;
+  
+  /* -------------------------------------------------------------------------
+     Shadows & Effects
+     ------------------------------------------------------------------------- */
+  
+  /* Drop Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+  
+  /* Inset Shadows */
+  --inset-light: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --inset-dark: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  --inset-pressed: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  --inset-well: inset 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-bounce: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+/* ============================================================================
+   2. BASE TEXTURES (CSS-Generated Patterns)
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Linen Texture - iOS Notes / iBooks Shelf Background
+   ------------------------------------------------------------------------- */
+.texture-linen {
+  background-color: var(--linen-base);
+  background-image: 
+    /* Noise grain overlay */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
+    /* Horizontal linen weave */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 2px,
+      rgba(0, 0, 0, 0.02) 4px
+    ),
+    /* Vertical linen weave */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 4px
+    );
+  background-blend-mode: overlay, normal, normal;
+}
+
+/* Subtle linen variant for lighter areas */
+.texture-linen-light {
+  background-color: #faf8f5;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.012) 3px,
+      rgba(0, 0, 0, 0.012) 6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.01) 3px,
+      rgba(0, 0, 0, 0.01) 6px
+    );
+}
+
+/* -------------------------------------------------------------------------
+   Brushed Aluminum - iTunes / Finder Window Chrome
+   ------------------------------------------------------------------------- */
+.texture-aluminum {
+  background: 
+    /* Horizontal brush strokes */
+    repeating-linear-gradient(
+      90deg,
+      var(--aluminum) 0px,
+      var(--aluminum-light) 1px,
+      var(--aluminum) 2px,
+      var(--aluminum-dark) 3px,
+      var(--aluminum) 4px
+    ),
+    /* Base gradient for depth */
+    linear-gradient(
+      to bottom,
+      var(--aluminum-highlight) 0%,
+      var(--aluminum) 10%,
+      var(--aluminum-dark) 90%,
+      #9a9a9a 100%
+    );
+  background-blend-mode: overlay, normal;
+}
+
+/* Lighter aluminum variant */
+.texture-aluminum-light {
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #d0d0d0 0px,
+      #d8d8d8 1px,
+      #d0d0d0 2px
+    ),
+    linear-gradient(
+      to bottom,
+      #e8e8e8 0%,
+      #d4d4d4 50%,
+      #c8c8c8 100%
+    );
+  background-blend-mode: overlay, normal;
+}
+
+/* -------------------------------------------------------------------------
+   Leather Texture - iBooks / Calendar
+   ------------------------------------------------------------------------- */
+.texture-leather {
+  background-color: var(--leather-mid);
+  background-image: 
+    /* Grain pattern */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='leather'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.4' numOctaves='3' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%236b5545' surfaceScale='1.5'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23leather)'/%3E%3C/svg%3E"),
+    /* Top highlight */
+    radial-gradient(
+      ellipse at center top,
+      rgba(255, 200, 100, 0.12) 0%,
+      transparent 60%
+    ),
+    /* Vertical grain lines */
+    repeating-linear-gradient(
+      90deg,
+      var(--leather-mid) 0px,
+      var(--leather-light) 1px,
+      var(--leather-mid) 2px
+    );
+  background-blend-mode: soft-light, normal, normal;
+  box-shadow: 
+    inset 0 20px 60px rgba(0, 0, 0, 0.2),
+    inset 0 -20px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Leather with stitching (for borders) */
+.texture-leather-stitched {
+  position: relative;
+}
+
+.texture-leather-stitched::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px dashed var(--leather-stitch);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------
+   Felt Texture - Game Center
+   ------------------------------------------------------------------------- */
+.texture-felt {
+  background-color: var(--felt-green);
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='felt'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23felt)'/%3E%3C/svg%3E"),
+    radial-gradient(
+      ellipse at center,
+      var(--felt-green-light) 0%,
+      var(--felt-green) 50%,
+      var(--felt-green-dark) 100%
+    );
+  background-blend-mode: soft-light, normal;
+}
+
+/* -------------------------------------------------------------------------
+   Dark Space Theme - Leopard/Mountain Lion Dashboard
+   ------------------------------------------------------------------------- */
+.texture-space {
+  background: 
+    /* Star field */
+    radial-gradient(1px 1px at 20px 30px, white, transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 50px 160px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, white, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 160px 120px, white, transparent),
+    /* Base gradient */
+    linear-gradient(
+      135deg,
+      #1a2a3a 0%,
+      #0d1521 40%,
+      #0a1018 100%
+    );
+  background-size: 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 100% 100%;
+}
+
+/* Subtle vignette overlay */
+.texture-space::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------
+   Noise Overlay Utility
+   ------------------------------------------------------------------------- */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+
+/* ============================================================================
+   3. TYPOGRAPHY SYSTEM
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Base Typography
+   ------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -------------------------------------------------------------------------
+   Text Effects - Embossed & Engraved
+   ------------------------------------------------------------------------- */
+
+/* Embossed text - light shadow below (raised appearance on light bg) */
+.text-embossed {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Strong emboss for headers */
+.text-embossed-strong {
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Engraved text - dark shadow above (pressed into surface) */
+.text-engraved {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Engraved for dark backgrounds */
+.text-engraved-dark {
+  text-shadow: 
+    0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Engraved for buttons (light text on colored bg) */
+.text-engraved-button {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Inset text for metal surfaces */
+.text-inset-metal {
+  color: #555;
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.6),
+    0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Glowing text for dark backgrounds */
+.text-glow {
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Blue glow for accent text */
+.text-glow-blue {
+  text-shadow: 
+    0 0 10px var(--gel-blue-glow),
+    0 0 20px var(--gel-blue-glow),
+    0 0 40px rgba(0, 122, 255, 0.2);
+}
+
+/* -------------------------------------------------------------------------
+   Typography Scale Classes
+   ------------------------------------------------------------------------- */
+
+/* Display headings */
+.text-display {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Section titles */
+.text-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.02em;
+}
+
+/* Card titles */
+.text-heading {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+}
+
+/* Body text */
+.text-body {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+/* Small/caption text */
+.text-small {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+/* Section labels */
+.text-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--gel-blue);
+}
+
+/* Monospace for tags/code */
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+
+/* ============================================================================
+   4. BUTTON SYSTEM - "Lickable" iOS 6 Style
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Base Button Reset
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: inherit;
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gel-blue);
+  outline-offset: 2px;
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Gel Button - Primary (iOS 6 Glossy Blue)
+   ------------------------------------------------------------------------- */
+.btn-gel {
+  background: linear-gradient(
+    to bottom,
+    var(--gel-blue-highlight) 0%,
+    var(--gel-blue) 45%,
+    var(--gel-blue) 55%,
+    var(--gel-blue-shadow) 100%
+  );
+  color: var(--text-inverse);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-8);
+  box-shadow: 
+    /* Top inner highlight (the "gel" shine) */
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    /* Bottom inner shadow */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    /* Outer drop shadow */
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    /* Color glow */
+    0 4px 12px var(--gel-blue-glow);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.btn-gel:hover {
+  background: linear-gradient(
+    to bottom,
+    #6dd0ff 0%,
+    #0088ff 45%,
+    #0088ff 55%,
+    #0066dd 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.25),
+    0 8px 20px var(--gel-blue-glow);
+}
+
+.btn-gel:active {
+  transform: translateY(1px);
+  background: linear-gradient(
+    to bottom,
+    var(--gel-blue) 0%,
+    var(--gel-blue-shadow) 50%,
+    var(--gel-blue-shadow) 100%
+  );
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Gel button color variants */
+.btn-gel--green {
+  background: linear-gradient(
+    to bottom,
+    #5ee077 0%,
+    var(--success-green) 45%,
+    var(--success-green) 55%,
+    var(--success-dark) 100%
+  );
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(52, 199, 89, 0.35);
+}
+
+.btn-gel--orange {
+  background: linear-gradient(
+    to bottom,
+    #ffb340 0%,
+    var(--warning-orange) 45%,
+    var(--warning-orange) 55%,
+    #cc7700 100%
+  );
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(255, 149, 0, 0.35);
+}
+
+.btn-gel--red {
+  background: linear-gradient(
+    to bottom,
+    #ff6b63 0%,
+    var(--error-red) 45%,
+    var(--error-red) 55%,
+    var(--error-dark) 100%
+  );
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(255, 59, 48, 0.35);
+}
+
+/* -------------------------------------------------------------------------
+   Glass Button - Secondary (Translucent White)
+   ------------------------------------------------------------------------- */
+.btn-glass {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-glass:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.88) 100%
+  );
+  transform: translateY(-1px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-glass:active {
+  transform: translateY(0);
+  background: linear-gradient(
+    to bottom,
+    rgba(240, 240, 240, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark glass variant for dark backgrounds */
+.btn-glass--dark {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  color: var(--text-inverse);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-glass--dark:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* -------------------------------------------------------------------------
+   Metal Button - Tertiary (Brushed Aluminum)
+   ------------------------------------------------------------------------- */
+.btn-metal {
+  background: 
+    /* Brushed metal texture */
+    repeating-linear-gradient(
+      90deg,
+      #c8c8c8 0px,
+      #d2d2d2 1px,
+      #c8c8c8 2px
+    ),
+    /* Vertical gradient for depth */
+    linear-gradient(
+      to bottom,
+      #e0e0e0 0%,
+      #d0d0d0 45%,
+      #c0c0c0 55%,
+      #a8a8a8 100%
+    );
+  background-blend-mode: overlay, normal;
+  color: var(--text-primary);
+  border: 1px solid #888;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-metal:hover {
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #d0d0d0 0px,
+      #dadada 1px,
+      #d0d0d0 2px
+    ),
+    linear-gradient(
+      to bottom,
+      #e8e8e8 0%,
+      #d8d8d8 45%,
+      #c8c8c8 55%,
+      #b0b0b0 100%
+    );
+  background-blend-mode: overlay, normal;
+  transform: translateY(-1px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.btn-metal:active {
+  transform: translateY(0);
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #b8b8b8 0px,
+      #c2c2c2 1px,
+      #b8b8b8 2px
+    ),
+    linear-gradient(
+      to bottom,
+      #c0c0c0 0%,
+      #b8b8b8 50%,
+      #b0b0b0 100%
+    );
+  background-blend-mode: overlay, normal;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------------------------------------------
+   Pill Button - Small Tags/Badges
+   ------------------------------------------------------------------------- */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.btn-pill--metal {
+  background: linear-gradient(
+    to bottom,
+    #e8e8e8 0%,
+    #d0d0d0 50%,
+    #c8c8c8 100%
+  );
+  color: var(--text-secondary);
+  border: 1px solid #a0a0a0;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-pill--glass {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* -------------------------------------------------------------------------
+   Button Sizes
+   ------------------------------------------------------------------------- */
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+}
+
+.btn--sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--lg {
+  padding: var(--space-5) var(--space-10);
+  font-size: var(--text-lg);
+  border-radius: var(--radius-xl);
+}
+
+.btn--lg svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* ============================================================================
+   5. CARD & CONTAINER SYSTEM
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Elevated Card - Default White Card with Depth
+   ------------------------------------------------------------------------- */
+.card-elevated {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    /* Top edge highlight */
+    0 -1px 0 rgba(255, 255, 255, 0.8),
+    /* Soft ambient shadow */
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    /* Larger diffuse shadow */
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all var(--transition-normal);
+}
+
+.card-elevated:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 -1px 0 rgba(255, 255, 255, 0.9),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* -------------------------------------------------------------------------
+   Metal Panel - Brushed Aluminum Card
+   ------------------------------------------------------------------------- */
+.panel-metal {
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #c8c8c8 0px,
+      #d2d2d2 1px,
+      #c8c8c8 2px
+    ),
+    linear-gradient(
+      to bottom,
+      #d8d8d8 0%,
+      #c8c8c8 50%,
+      #b8b8b8 100%
+    );
+  background-blend-mode: overlay, normal;
+  border: 1px solid #909090;
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    /* Top inner highlight */
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    /* Bottom inner shadow */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    /* Outer shadow */
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Lighter metal panel variant */
+.panel-metal--light {
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #d4d4d4 0px,
+      #dedede 1px,
+      #d4d4d4 2px
+    ),
+    linear-gradient(
+      to bottom,
+      #e8e8e8 0%,
+      #d8d8d8 50%,
+      #cccccc 100%
+    );
+  background-blend-mode: overlay, normal;
+  border-color: #a8a8a8;
+}
+
+/* -------------------------------------------------------------------------
+   Inset Well - Recessed Input/Display Area
+   ------------------------------------------------------------------------- */
+.well-inset {
+  background: linear-gradient(
+    to bottom,
+    #e0e0e0 0%,
+    #e8e8e8 20%,
+    #f0f0f0 100%
+  );
+  border: 1px solid #999;
+  border-radius: var(--radius-md);
+  box-shadow: 
+    /* Strong top inset shadow */
+    inset 0 1px 3px rgba(0, 0, 0, 0.2),
+    /* Subtle bottom highlight */
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5),
+    /* Left/right subtle inset */
+    inset 1px 0 1px rgba(0, 0, 0, 0.05),
+    inset -1px 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Darker well for displaying content */
+.well-inset--dark {
+  background: linear-gradient(
+    to bottom,
+    #2a2a2a 0%,
+    #333333 20%,
+    #3a3a3a 100%
+  );
+  border-color: #1a1a1a;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* -------------------------------------------------------------------------
+   Glass Panel - Translucent Container
+   ------------------------------------------------------------------------- */
+.panel-glass {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark glass panel */
+.panel-glass--dark {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* -------------------------------------------------------------------------
+   Dashboard Widget - Mac OS X Dashboard Style
+   ------------------------------------------------------------------------- */
+.widget {
+  background: linear-gradient(
+    to bottom,
+    rgba(60, 60, 60, 0.95) 0%,
+    rgba(40, 40, 40, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 
+    /* Inner top highlight */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    /* Inner bottom shadow */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    /* Outer glow */
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    /* Large shadow */
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 16px 48px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.widget__header {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 100%
+  );
+}
+
+.widget__title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.widget__body {
+  padding: var(--space-5);
+}
+
+.widget__value {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.widget__label {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: var(--space-1);
+}
+
+/* Widget color accents */
+.widget--blue {
+  border-color: rgba(0, 122, 255, 0.3);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 122, 255, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(0, 122, 255, 0.15);
+}
+
+.widget--green {
+  border-color: rgba(52, 199, 89, 0.3);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(52, 199, 89, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(52, 199, 89, 0.15);
+}
+
+.widget--orange {
+  border-color: rgba(255, 149, 0, 0.3);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 149, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(255, 149, 0, 0.15);
+}
+
+/* -------------------------------------------------------------------------
+   Leather Card - For Resume/Document Sections
+   ------------------------------------------------------------------------- */
+.card-leather {
+  background-color: var(--leather-mid);
+  background-image: 
+    radial-gradient(
+      ellipse at center top,
+      rgba(255, 200, 100, 0.1) 0%,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--leather-mid) 0px,
+      var(--leather-light) 1px,
+      var(--leather-mid) 2px
+    );
+  border: 3px solid var(--leather-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    inset 0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 -15px 40px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Stitching effect */
+.card-leather::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px dashed var(--leather-stitch);
+  border-radius: calc(var(--radius-lg) - 6px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+/* ============================================================================
+   6. FORM INPUTS - Skeuomorphic Style
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Input Base - Inset Well Style
+   ------------------------------------------------------------------------- */
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background: linear-gradient(
+    to bottom,
+    #e8e8e8 0%,
+    #f2f2f2 15%,
+    #f8f8f8 100%
+  );
+  border: 1px solid #999;
+  border-radius: var(--radius-md);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.7),
+    0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--gel-blue);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.7),
+    0 0 0 3px rgba(0, 122, 255, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Textarea */
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* -------------------------------------------------------------------------
+   Select Dropdown
+   ------------------------------------------------------------------------- */
+.select {
+  appearance: none;
+  padding-right: var(--space-10);
+  background-image: 
+    /* Chevron arrow */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M2 4l4 4 4-4'/%3E%3C/svg%3E"),
+    /* Separator line */
+    linear-gradient(to bottom, #ccc, #ccc),
+    /* Input gradient */
+    linear-gradient(to bottom, #e8e8e8 0%, #f2f2f2 15%, #f8f8f8 100%);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: calc(100% - 14px) center, calc(100% - 36px) center, 0 0;
+  background-size: 12px 12px, 1px 60%, 100% 100%;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   Checkbox & Radio - iOS Style Toggle
+   ------------------------------------------------------------------------- */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    #e0e0e0 0%,
+    #f0f0f0 100%
+  );
+  border: 1px solid #999;
+  border-radius: var(--radius-sm);
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.checkbox:checked {
+  background: linear-gradient(
+    to bottom,
+    var(--gel-blue-highlight) 0%,
+    var(--gel-blue) 50%,
+    var(--gel-blue-shadow) 100%
+  );
+  border-color: var(--gel-blue-shadow);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.checkbox:checked::after {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Radio button */
+.radio {
+  border-radius: 50%;
+}
+
+.radio:checked::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 4px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ============================================================================
+   7. ICON CONTAINERS
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Metal Disk Icon - Brushed Metal Circle
+   ------------------------------------------------------------------------- */
+.icon-disk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: 
+    /* Radial brushed effect */
+    conic-gradient(
+      from 0deg,
+      #c8c8c8, #d8d8d8, #c8c8c8, #d8d8d8,
+      #c8c8c8, #d8d8d8, #c8c8c8, #d8d8d8,
+      #c8c8c8
+    ),
+    /* Base gradient */
+    radial-gradient(
+      circle,
+      #e0e0e0 0%,
+      #c0c0c0 70%,
+      #a8a8a8 100%
+    );
+  background-blend-mode: overlay, normal;
+  border: 1px solid #909090;
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.icon-disk svg {
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
+}
+
+/* Icon disk with color accent glow */
+.icon-disk--blue {
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(0, 122, 255, 0.2);
+}
+
+.icon-disk--blue svg {
+  color: var(--gel-blue);
+}
+
+.icon-disk--green {
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(52, 199, 89, 0.2);
+}
+
+.icon-disk--green svg {
+  color: var(--success-green);
+}
+
+/* -------------------------------------------------------------------------
+   Gel Icon Badge - Glossy Colored Circle
+   ------------------------------------------------------------------------- */
+.icon-gel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    var(--gel-blue-highlight) 0%,
+    var(--gel-blue) 50%,
+    var(--gel-blue-shadow) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 12px var(--gel-blue-glow);
+}
+
+.icon-gel svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+  filter: drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.3));
+}
+
+
+/* ============================================================================
+   8. TAGS & BADGES
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Metal Tag - Engraved Pill
+   ------------------------------------------------------------------------- */
+.tag-metal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  background: linear-gradient(
+    to bottom,
+    #e8e8e8 0%,
+    #d8d8d8 50%,
+    #d0d0d0 100%
+  );
+  border: 1px solid #a8a8a8;
+  border-radius: var(--radius-full);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Pressed/inset tag variant */
+.tag-inset {
+  background: linear-gradient(
+    to bottom,
+    #d0d0d0 0%,
+    #d8d8d8 50%,
+    #e0e0e0 100%
+  );
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* -------------------------------------------------------------------------
+   Status Badge - With LED Indicator
+   ------------------------------------------------------------------------- */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  border-radius: var(--radius-full);
+}
+
+.badge-status--available {
+  background: linear-gradient(
+    to bottom,
+    rgba(52, 199, 89, 0.15) 0%,
+    rgba(52, 199, 89, 0.08) 100%
+  );
+  color: var(--success-dark);
+  border: 1px solid rgba(52, 199, 89, 0.3);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 2px 8px rgba(52, 199, 89, 0.15);
+}
+
+/* LED dot */
+.badge-status__led {
+  width: 8px;
+  height: 8px;
+  background: var(--success-green);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 4px var(--success-green),
+    0 0 8px var(--success-green);
+  animation: led-pulse 2s ease-in-out infinite;
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--success-green), 0 0 8px var(--success-green); }
+  50% { opacity: 0.6; box-shadow: 0 0 2px var(--success-green), 0 0 4px var(--success-green); }
+}
+
+/* -------------------------------------------------------------------------
+   Credential Badge - Small Info Pills
+   ------------------------------------------------------------------------- */
+.badge-credential {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.badge-credential svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+}
+
+
+/* ============================================================================
+   9. NAVIGATION COMPONENTS
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Glass Navigation Bar
+   ------------------------------------------------------------------------- */
+.nav-glass {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(245, 245, 245, 0.92) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 1px 8px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+}
+
+/* -------------------------------------------------------------------------
+   Nav Link - Glass Pill on Hover
+   ------------------------------------------------------------------------- */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.nav-link.is-active {
+  color: var(--text-primary);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.nav-link svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------
+   Hamburger Menu Toggle - Metal Style
+   ------------------------------------------------------------------------- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: linear-gradient(
+    to bottom,
+    #e8e8e8 0%,
+    #d8d8d8 100%
+  );
+  border: 1px solid #a8a8a8;
+  border-radius: var(--radius-md);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text-secondary);
+  border-radius: 1px;
+  transition: all var(--transition-fast);
+}
+
+.nav-toggle:active {
+  background: linear-gradient(
+    to bottom,
+    #d8d8d8 0%,
+    #e0e0e0 100%
+  );
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ============================================================================
+   10. SECTION LAYOUTS
+   ============================================================================ */
+
+/* -------------------------------------------------------------------------
+   Section Base
+   ------------------------------------------------------------------------- */
+.section {
+  padding: var(--space-24) var(--space-6);
+}
+
+.section__container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------
+   Section Header
+   ------------------------------------------------------------------------- */
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.section__label {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--gel-blue);
+  margin-bottom: var(--space-3);
+}
+
+.section__title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: var(--font-bold);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.section__subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------
+   Grid Layouts
+   ------------------------------------------------------------------------- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================================
+   11. UTILITY CLASSES
+   ============================================================================ */
+
+/* Spacing */
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+
+/* Flexbox */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.flex-wrap { flex-wrap: wrap; }
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Colors */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-inverse { color: var(--text-inverse); }
+.text-blue { color: var(--gel-blue); }
+.text-green { color: var(--success-green); }
+
+/* Misc */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================================
+   12. RESPONSIVE BREAKPOINTS
+   ============================================================================ */
+
+@media (max-width: 1024px) {
+  :root {
+    --container-max: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 56px;
+  }
+  
+  .section {
+    padding: var(--space-16) var(--space-4);
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --text-base: 15px;
+  }
+  
+  .section {
+    padding: var(--space-12) var(--space-4);
+  }
+  
+  .btn-gel,
+  .btn-glass,
+  .btn-metal {
+    width: 100%;
+  }
+}
