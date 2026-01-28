@@ -2812,58 +2812,142 @@ CERTIFICATIONS (In Progress)
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 // PDF.js Configuration
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+if (typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+} else {
+  console.error('PDF.js library not loaded');
+}
 
 async function loadPDF() {
+  console.log('loadPDF() called');
+  
   const page1Container = document.getElementById('page1Container');
   const page2Container = document.getElementById('page2Container');
+  const canvas1 = document.getElementById('pdfPage1');
+  const canvas2 = document.getElementById('pdfPage2');
   
-  // Check if containers exist
-  if (!page1Container) {
-    console.error('PDF container not found');
+  // Debug: Check if elements exist
+  console.log('page1Container:', page1Container);
+  console.log('canvas1:', canvas1);
+  
+  if (!page1Container || !canvas1) {
+    console.error('PDF container or canvas not found');
+    return;
+  }
+  
+  // Check if pdfjsLib is available
+  if (typeof pdfjsLib === 'undefined') {
+    console.error('pdfjsLib is not defined');
+    page1Container.innerHTML = '<div class="resume__fallback"><p>PDF viewer failed to load. Please <a href="ResumeYeahBaby-2.pdf" download>download the PDF</a> instead.</p></div>';
     return;
   }
   
   try {
     // Show loading state
-    page1Container.style.minHeight = '400px';
+    page1Container.style.minHeight = '500px';
+    page1Container.style.display = 'flex';
+    page1Container.style.alignItems = 'center';
+    page1Container.style.justifyContent = 'center';
+    canvas1.style.display = 'none';
     
-    const pdf = await pdfjsLib.getDocument('ResumeYeahBaby-2.pdf').promise;
+    // Add loading indicator
+    let loadingDiv = page1Container.querySelector('.pdf-loading');
+    if (!loadingDiv) {
+      loadingDiv = document.createElement('div');
+      loadingDiv.className = 'pdf-loading';
+      loadingDiv.innerHTML = '<p style="color: var(--text-muted);">Loading resume...</p>';
+      page1Container.appendChild(loadingDiv);
+    }
+    
+    console.log('Attempting to load PDF...');
+    const loadingTask = pdfjsLib.getDocument('ResumeYeahBaby-2.pdf');
+    
+    loadingTask.onProgress = function(progress) {
+      console.log('PDF loading progress:', Math.round(progress.loaded / progress.total * 100) + '%');
+    };
+    
+    const pdf = await loadingTask.promise;
     console.log('PDF loaded successfully, pages:', pdf.numPages);
+    
+    // Remove loading indicator
+    if (loadingDiv) loadingDiv.remove();
+    
+    // Reset container styles
+    page1Container.style.minHeight = '';
+    page1Container.style.display = '';
+    page1Container.style.alignItems = '';
+    page1Container.style.justifyContent = '';
+    canvas1.style.display = 'block';
     
     await renderPage(pdf, 1, 'pdfPage1', 'page1Container');
     
-    if (pdf.numPages > 1) {
+    if (pdf.numPages > 1 && page2Container && canvas2) {
+      canvas2.style.display = 'block';
       await renderPage(pdf, 2, 'pdfPage2', 'page2Container');
-    } else {
+    } else if (page2Container) {
       page2Container.style.display = 'none';
     }
+    
   } catch (error) {
     console.error('Error loading PDF:', error);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    
+    // Remove loading indicator
+    const loadingDiv = page1Container.querySelector('.pdf-loading');
+    if (loadingDiv) loadingDiv.remove();
+    
+    // Reset styles
+    page1Container.style.minHeight = '';
+    page1Container.style.display = '';
+    canvas1.style.display = 'none';
+    
+    let errorMessage = 'Unable to load resume preview.';
+    if (error.message && error.message.includes('Missing PDF')) {
+      errorMessage = 'PDF file not found. Make sure ResumeYeahBaby-2.pdf is in the same folder as this page.';
+    } else if (error.message && error.message.includes('fetch')) {
+      errorMessage = 'Could not fetch PDF. If testing locally, try using a local server (python -m http.server).';
+    }
+    
     page1Container.innerHTML = `
-      <div class="resume__fallback">
-        <p style="margin-bottom: 16px;">Unable to load resume preview.</p>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-          Error: ${error.message || 'PDF file not found'}
+      <div class="resume__fallback" style="padding: 40px 20px;">
+        <p style="margin-bottom: 12px; font-weight: 500;">${errorMessage}</p>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px; font-family: var(--font-mono);">
+          ${error.message || 'Unknown error'}
         </p>
-        <a href="ResumeYeahBaby-2.pdf" download class="btn btn-gel btn--sm">
-          Download PDF instead →
+        <a href="ResumeYeahBaby-2.pdf" download class="btn btn-gel btn--sm" style="display: inline-flex;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
         </a>
       </div>
     `;
-    page1Container.style.minHeight = 'auto';
-    page2Container.style.display = 'none';
+    
+    if (page2Container) {
+      page2Container.style.display = 'none';
+    }
   }
 }
 
 async function renderPage(pdf, pageNumber, canvasId, containerId) {
+  console.log(`Rendering page ${pageNumber}...`);
+  
   const page = await pdf.getPage(pageNumber);
   const canvas = document.getElementById(canvasId);
-  const context = canvas.getContext('2d');
   const container = document.getElementById(containerId);
   
-  // Get container width (accounting for padding)
-  const containerWidth = container.clientWidth || 700;
+  if (!canvas || !container) {
+    console.error(`Canvas or container not found for page ${pageNumber}`);
+    return;
+  }
+  
+  const context = canvas.getContext('2d');
+  
+  // Get container width - use a default if it's 0
+  let containerWidth = container.clientWidth;
+  if (containerWidth <= 0) {
+    containerWidth = container.offsetWidth || 700;
+  }
+  console.log(`Container width for page ${pageNumber}:`, containerWidth);
   
   const viewport = page.getViewport({ scale: 1 });
   const scale = (containerWidth / viewport.width) * (window.devicePixelRatio || 1);
@@ -2874,29 +2958,28 @@ async function renderPage(pdf, pageNumber, canvasId, containerId) {
   canvas.style.width = containerWidth + 'px';
   canvas.style.height = (scaledViewport.height / (window.devicePixelRatio || 1)) + 'px';
   
-  await page.render({ 
-    canvasContext: context, 
-    viewport: scaledViewport 
-  }).promise;
+  const renderContext = {
+    canvasContext: context,
+    viewport: scaledViewport
+  };
   
-  // Reset min-height after render
-  container.style.minHeight = 'auto';
-  
+  await page.render(renderContext).promise;
   console.log(`Page ${pageNumber} rendered successfully`);
 }
 
+// Debounced resize handler
 let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(loadPDF, 250);
+  resizeTimeout = setTimeout(loadPDF, 300);
 });
 
-// Load PDF when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadPDF);
-} else {
-  loadPDF();
-}
+// Load PDF when page is fully ready
+window.addEventListener('load', () => {
+  console.log('Window load event fired');
+  // Small delay to ensure layout is complete
+  setTimeout(loadPDF, 100);
+});
 
 // Mobile Navigation
 const mobileNav = document.getElementById('mobileNav');
