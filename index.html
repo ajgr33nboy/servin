@@ -2809,23 +2809,50 @@ CERTIFICATIONS (In Progress)
 </style>
 
 <!-- Scripts -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
+// PDF.js Configuration
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 async function loadPDF() {
+  const page1Container = document.getElementById('page1Container');
+  const page2Container = document.getElementById('page2Container');
+  
+  // Check if containers exist
+  if (!page1Container) {
+    console.error('PDF container not found');
+    return;
+  }
+  
   try {
+    // Show loading state
+    page1Container.style.minHeight = '400px';
+    
     const pdf = await pdfjsLib.getDocument('ResumeYeahBaby-2.pdf').promise;
+    console.log('PDF loaded successfully, pages:', pdf.numPages);
+    
     await renderPage(pdf, 1, 'pdfPage1', 'page1Container');
+    
     if (pdf.numPages > 1) {
       await renderPage(pdf, 2, 'pdfPage2', 'page2Container');
     } else {
-      document.getElementById('page2Container').style.display = 'none';
+      page2Container.style.display = 'none';
     }
   } catch (error) {
     console.error('Error loading PDF:', error);
-    document.getElementById('page1Container').innerHTML = '<div class="resume__fallback"><p>Unable to load resume preview.</p><a href="ResumeYeahBaby-2.pdf" download>Download PDF instead →</a></div>';
-    document.getElementById('page2Container').style.display = 'none';
+    page1Container.innerHTML = `
+      <div class="resume__fallback">
+        <p style="margin-bottom: 16px;">Unable to load resume preview.</p>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Error: ${error.message || 'PDF file not found'}
+        </p>
+        <a href="ResumeYeahBaby-2.pdf" download class="btn btn-gel btn--sm">
+          Download PDF instead →
+        </a>
+      </div>
+    `;
+    page1Container.style.minHeight = 'auto';
+    page2Container.style.display = 'none';
   }
 }
 
@@ -2834,15 +2861,28 @@ async function renderPage(pdf, pageNumber, canvasId, containerId) {
   const canvas = document.getElementById(canvasId);
   const context = canvas.getContext('2d');
   const container = document.getElementById(containerId);
-  const containerWidth = container.clientWidth;
+  
+  // Get container width (accounting for padding)
+  const containerWidth = container.clientWidth || 700;
+  
   const viewport = page.getViewport({ scale: 1 });
-  const scale = (containerWidth / viewport.width) * window.devicePixelRatio;
+  const scale = (containerWidth / viewport.width) * (window.devicePixelRatio || 1);
   const scaledViewport = page.getViewport({ scale });
+  
   canvas.width = scaledViewport.width;
   canvas.height = scaledViewport.height;
   canvas.style.width = containerWidth + 'px';
-  canvas.style.height = (scaledViewport.height / window.devicePixelRatio) + 'px';
-  await page.render({ canvasContext: context, viewport: scaledViewport }).promise;
+  canvas.style.height = (scaledViewport.height / (window.devicePixelRatio || 1)) + 'px';
+  
+  await page.render({ 
+    canvasContext: context, 
+    viewport: scaledViewport 
+  }).promise;
+  
+  // Reset min-height after render
+  container.style.minHeight = 'auto';
+  
+  console.log(`Page ${pageNumber} rendered successfully`);
 }
 
 let resizeTimeout;
@@ -2850,7 +2890,13 @@ window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(loadPDF, 250);
 });
-window.addEventListener('load', loadPDF);
+
+// Load PDF when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadPDF);
+} else {
+  loadPDF();
+}
 
 // Mobile Navigation
 const mobileNav = document.getElementById('mobileNav');
