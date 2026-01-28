@@ -2392,7 +2392,7 @@ body { background: var(--linen-base); }
       <div style="margin-top: 40px; text-align: center;">
         <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 16px;">Or reach me directly:</p>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-          <a  href="mailto:ajgreenboy@gmail.com" class="btn btn-metal btn--sm">
+          <a href="/cdn-cgi/l/email-protection#0c6d607b696562697e2278696f644c6b616d6560226f6361" class="btn btn-metal btn--sm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             Email
           </a>
@@ -2454,138 +2454,62 @@ body { background: var(--linen-base); }
     </div>
     <div class="modal__body">
       <pre class="modal__content">ALBERT WEINER
-Minneapolis, Minnesota
-ajgreenboy@gmail.com | 218-576-8223
-GitHub: github.com/ajgreenboy | LinkedIn: linkedin.com/in/al-weiner-29865529a
-Portfolio: https://www.unfunky.xyz/
+Infrastructure Engineer & Security Specialist
+Minneapolis, MN | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="46272a31232f282334683223252e06212b272f2a6825292b">[email&#160;protected]</a>
+LinkedIn: linkedin.com/in/al-weiner-29865529a
+GitHub: github.com/ajgreenboy
 
-================================================================================
 SUMMARY
-================================================================================
-Detail-oriented Technical Specialist with a strong foundation in Networking and
-Cybersecurity. Proficient in Linux (Debian/Arch) and Windows, Docker, PowerShell,
-and modern infrastructure technologies, combining advanced technical training with
-a background in high-pressure operations and maintenance. Skilled at troubleshooting
-hardware, software, and physical systems under demanding conditions. Seeking to
-apply a disciplined and analytical approach to a professional role within the
-broader IT and Security space.
+----------------------------------------------------------------------
+Recent graduate with three Associate degrees in Network Administration, 
+Cybersecurity & Defense, and Mathematics. Hands-on experience building 
+and maintaining production-grade homelab infrastructure with 24+ 
+containerized services, comprehensive monitoring, and security-first 
+architecture.
 
-================================================================================
 EDUCATION
-================================================================================
-Minneapolis Community and Technical College | Minneapolis, MN
-- A.A.S. Computer Networking | Graduated: December 2025
-- A.A.S. Cybersecurity | Graduated: December 2025
-- A.S. Mathematics | Graduated: May 2025
+----------------------------------------------------------------------
+Minneapolis Community and Technical College
+- AS Network Administration (2024)
+- AS Cybersecurity and Defense (2024)  
+- AS Mathematics (2024)
 
-================================================================================
-CERTIFICATIONS (IN PROGRESS)
-================================================================================
-- CompTIA Security+ (In pursuit)
-- CompTIA CySA+ (In pursuit)
-- IPC 7711/21 & IPC 610 (In pursuit)
+CERTIFICATIONS (In Progress)
+----------------------------------------------------------------------
+- CompTIA Security+
+- CompTIA CySA+
 
-================================================================================
 TECHNICAL SKILLS
-================================================================================
+----------------------------------------------------------------------
+Systems: Debian, Ubuntu, Linux administration, systemd, LVM, SSH
+Containers: Docker, Docker Compose, Portainer, Watchtower
+Networking: Nginx, OpenWRT, Tailscale, Cloudflare, DNS, VPN
+Security: Fail2Ban, Zero Trust, SSL/TLS, WireGuard, UFW
+Monitoring: Prometheus, Grafana, cAdvisor, Node Exporter
+DevOps: Git, Ansible, Bash scripting, Cron, CI/CD
+Cloud: Cloudflare Tunnel, GitHub Actions
 
-Networking:
-VLAN segmentation, TCP/IP, VPN (Tailscale mesh), DHCP/DNS, OpenWRT, Remote
-Administration
+PROJECTS
+----------------------------------------------------------------------
+Production Homelab Infrastructure
+- Deployed 24+ containerized services on Debian 13 server
+- Built monitoring stack with Prometheus, Grafana, and Telegram alerts
+- Implemented zero-trust access via Cloudflare Tunnel with GitHub OAuth
+- Automated security with Fail2Ban blocking 2,800+ attacks daily
+- Managed 6TB storage with automated backup strategies
+- Technologies: Docker, Prometheus, Grafana, Nginx, Tailscale, Fail2Ban
 
-Cybersecurity:
-Network hardening, SSH key-based authentication, Deny-by-Default posture,
-MAC address filtering
+EXPERIENCE
+----------------------------------------------------------------------
+The Loppet Foundation | Seasonal Operations
+- Manage snowmaking equipment and facility operations
+- Maintain operational efficiency in dynamic outdoor environment
 
-Infrastructure & Virtualization:
-Docker Compose, Portainer, YAML configuration, SFF server architecture,
-NVMe integration
-
-Monitoring & Data:
-Grafana (telemetry & metrics), Syncthing (data sync), System-level snapshots,
-Uptime tracking
-
-Physical & Electrical:
-240V power distribution, High-PSI infrastructure, Hardware troubleshooting,
-Mechanical diagnostics
-
-Operational Tools:
-Linux CLI, Specialized hand/motorized tools, Heavy equipment (Kubota/Toolcat/Trucks),
-Chemical testing & safety
-
-================================================================================
-TECHNICAL PROJECTS
-================================================================================
-
-HOMELAB & NETWORK INFRASTRUCTURE
-GitHub: https://github.com/ajgreenboy/homelab-infrastructure
-Live Dashboard: home.unfunky.xyz
-Monitoring: grafana.unfunky.xyz
-
-Production homelab environment designed with enterprise-grade security practices
-and modern infrastructure patterns. The infrastructure emphasizes defense-in-depth
-security, network segmentation, automated monitoring, and containerized service
-deployment.
-
-Key Principles:
-- Defense in Depth: Multi-layer security architecture
-- Network Segmentation: VLAN isolation for trusted and untrusted devices
-- Zero Trust: Deny-by-default posture with granular access control
-- Observability: Comprehensive monitoring and alerting infrastructure
-- Infrastructure as Code: Containerized services with declarative configuration
-
-External Access:
-- Dashboard: home.unfunky.xyz (Cloudflare Zero Trust protected)
-- Monitoring: grafana.unfunky.xyz (GitHub OAuth authentication)
-
-================================================================================
-TECHNICAL AND MAINTENANCE EXPERIENCE
-================================================================================
-
-THE LOPPET FOUNDATION | Minneapolis, MN
-Hardware Maintenance & Operations | November 2022 - Present
-
-- Hardware Maintenance & Diagnostics: Managed a fleet of SMI fan guns (60A and
-  30A models); performed on-unit troubleshooting and mechanical adjustments to
-  ensure 24/7 operation
-
-- Field Monitoring: Conducted manual system checks using physical pressure dials
-  and gauges to monitor equipment health and output in extreme winter environments
-
-- Power Distribution: Supported the deployment and maintenance of 240V electrical
-  supply lines and distribution points across a 7km trail system
-
-- High-Pressure Infrastructure: Handled the setup and operational monitoring of
-  high-PSI water lines and hydrants, ensuring secure connections and system
-  integrity during snowmaking cycles
-
-- Systematic Deployment: Executed the phased layout of snow infrastructure,
-  coordinating the movement of heavy equipment and hardware to meet operational
-  deadlines
-
-
-MINNEAPOLIS PARKS AND RECREATION BOARD | Minneapolis, MN
-Facility Maintenance & Operations | May 2024 - August 2024
-
-- Multi-Site Logistics: Managed facility maintenance and grounds-keeping across
-  the "Upper South" service area, covering the West River Parkway from Bohemian
-  Flats to Lock and Dam 1
-
-- Environmental Monitoring: Collaborated with a team to perform systematic chemical
-  testing of 5+ aquatic facilities; verified and logged chlorine and alkalinity
-  levels to ensure strict adherence to health and safety standards
-
-- Equipment & Fleet Operations: Safely operated and performed basic upkeep on a
-  variety of vehicles and machinery, including Trucks, Toolcats, and Kubota units,
-  to complete regional maintenance tasks
-
-- Infrastructure Maintenance: Utilized a range of specialized tools, including
-  motorized saws and drills, to maintain and repair park hardware and physical
-  assets
-
-- Team Collaboration: Worked within a coordinated team environment to prioritize
-  tasks and ensure high-traffic public areas remained operational and safe
-</pre>
+ADDITIONAL
+----------------------------------------------------------------------
+- Available for entry-level positions in network administration, 
+  infrastructure engineering, or junior systems administration
+- Open to relocation within the Minneapolis-St. Paul metro area</pre>
     </div>
     <div class="modal__footer">
       <button onclick="copyATSResume()" class="btn btn-metal">
@@ -2598,6 +2522,7 @@ Facility Maintenance & Operations | May 2024 - August 2024
 </div>
 
 <!-- ATS Resume Modal -->
+<div class="modal-overlay" id="atsModal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: all 0.25s ease;">
   <div class="modal" style="background: white; border-radius: 16px; max-width: 800px; width: 100%; max-height: 90vh; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); transform: scale(0.95) translateY(20px); transition: transform 0.25s ease;">
     <div class="modal__header" style="padding: 20px 24px; background: linear-gradient(to bottom, #f8f8f8, #f0f0f0); border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: space-between;">
       <h3 style="font-size: 18px; font-weight: 600; color: var(--text-primary);">ATS-Optimized Resume (Plain Text)</h3>
@@ -2942,12 +2867,14 @@ formFields.forEach(field => {
 // Phase 5: Contact Form Backend Integration
 // =============================================================================
 
-const CONTACT_FORM_CONFIG = {
+// Configuration - Replace with your actual Google Apps Script URL after deployment
+const CONTACT_FORM_CONFIG = {'https://script.google.com/macros/s/AKfycbwNJ-61QlWVpkguYxqOYNXAvSnDjY5JjQMOqUPjpi2gFguNp1_J5HOpbhZEgF-_td2H/exec'
   // Set this to your deployed Google Apps Script Web App URL
-  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwNJ-61QlWVpkguYxqOYNXAvSnDjY5JjQMOqUPjpi2gFguNp1_J5HOpbhZEgF-_td2H/exec',
-
+  // Example: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'
+  appsScriptUrl: null, // Set to null to use mailto fallback
+  
   // Fallback email if Apps Script is not configured
-  fallbackEmail: 'ajgreenboy@gmail.com'
+  fallbackEmail: 'alweiner.tech@gmail.com'
 };
 
 contactForm.addEventListener('submit', async (e) => {
@@ -3162,9 +3089,7 @@ function initCountUpAnimations() {
     { id: 'stat-uptime', target: '99.7', suffix: '%' },
     { id: 'stat-security', target: '2847', suffix: '' },
     { id: 'stat-containers', target: '24', suffix: '' },
-    { id: 'stat-storage', target: '6', suffix: ' TB' },
-    { id: 'stat-cpu', target: '24', suffix: '%' },
-    { id: 'stat-ram', target: '42', suffix: '%' }
+    { id: 'stat-storage', target: '6', suffix: ' TB' }
   ];
   
   const observer = new IntersectionObserver((entries) => {
@@ -3355,20 +3280,18 @@ async function fetchHomelabStats() {
  */
 async function updateDashboardStats() {
   const stats = await fetchHomelabStats();
-
+  
   if (!stats) {
     // Use defaults
     return;
   }
-
+  
   // Update stat values (these will be animated by initCountUpAnimations)
   const statElements = [
     { id: 'stat-uptime', value: stats.uptime?.percentage, suffix: '%' },
     { id: 'stat-security', value: stats.security?.attacks_blocked_24h, suffix: '' },
     { id: 'stat-containers', value: stats.containers?.running, suffix: '' },
-    { id: 'stat-storage', value: stats.storage?.total_tb, suffix: ' TB' },
-    { id: 'stat-cpu', value: stats.cpu?.usage_percent, suffix: '%' },
-    { id: 'stat-ram', value: stats.ram?.usage_percent, suffix: '%' }
+    { id: 'stat-storage', value: stats.storage?.total_tb, suffix: ' TB' }
   ];
   
   statElements.forEach(stat => {
