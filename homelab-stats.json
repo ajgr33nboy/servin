@@ -1,0 +1,69 @@
+{
+  "timestamp": "2025-01-27T15:30:00Z",
+  "uptime": {
+    "percentage": 99.7,
+    "days_monitored": 30,
+    "last_incident": null
+  },
+  "security": {
+    "attacks_blocked_24h": 2847,
+    "attacks_blocked_total": 45230,
+    "active_bans": 156,
+    "last_attack": "2025-01-27T15:28:43Z"
+  },
+  "containers": {
+    "running": 24,
+    "total": 26,
+    "healthy": 24,
+    "unhealthy": 0
+  },
+  "storage": {
+    "total_tb": 6,
+    "used_tb": 3.2,
+    "available_tb": 2.8,
+    "percentage_used": 53
+  },
+  "services": [
+    {
+      "name": "Prometheus",
+      "status": "healthy",
+      "uptime_hours": 720,
+      "last_check": "2025-01-27T15:30:00Z"
+    },
+    {
+      "name": "Grafana",
+      "status": "healthy",
+      "uptime_hours": 720,
+      "last_check": "2025-01-27T15:30:00Z"
+    },
+    {
+      "name": "Fail2Ban",
+      "status": "healthy",
+      "uptime_hours": 720,
+      "last_check": "2025-01-27T15:30:00Z"
+    },
+    {
+      "name": "Nginx Proxy Manager",
+      "status": "healthy",
+      "uptime_hours": 718,
+      "last_check": "2025-01-27T15:30:00Z"
+    },
+    {
+      "name": "Jellyfin",
+      "status": "healthy",
+      "uptime_hours": 720,
+      "last_check": "2025-01-27T15:30:00Z"
+    },
+    {
+      "name": "Nextcloud",
+      "status": "healthy",
+      "uptime_hours": 715,
+      "last_check": "2025-01-27T15:30:00Z"
+    }
+  ],
+  "network": {
+    "bytes_in_24h": 12500000000,
+    "bytes_out_24h": 8900000000,
+    "active_connections": 42
+  }
+}

@@ -1148,10 +1148,140 @@ body { background: var(--linen-base); }
   flex-shrink: 0;
 }
 
+/* ==========================================================================
+   Phase 4: Mobile Responsiveness
+   ========================================================================== */
+
 /* --------------------------------------------------------------------------
-   Responsive
+   Large Desktop (1200px+)
    -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
+@media (min-width: 1200px) {
+  .skills__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .homelab__widgets {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .homelab__projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Desktop (992px - 1199px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  :root {
+    --container-max: 960px;
+  }
+  
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .homelab__widgets {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .homelab__projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet (768px - 991px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  :root {
+    --container-max: 720px;
+  }
+  
+  /* Typography scale down */
+  .hero__title {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+  }
+  
+  .skills__title,
+  .resume__title,
+  .homelab__title,
+  .contact__title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  /* Hero adjustments */
+  .hero {
+    padding: calc(var(--nav-height) + 40px) 20px 60px;
+  }
+  
+  .hero__subtitle {
+    font-size: 17px;
+  }
+  
+  .hero__credentials {
+    gap: 8px;
+  }
+  
+  .hero__credential {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  /* Skills grid - 2 columns on tablet */
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .skill-card {
+    padding: 24px;
+  }
+  
+  /* Homelab widgets - 2x2 grid */
+  .homelab__widgets {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .widget__value {
+    font-size: 28px;
+  }
+  
+  /* Projects - 2 columns */
+  .homelab__projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  /* Narrative cards */
+  .homelab__narrative-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Section padding */
+  .skills,
+  .resume,
+  .homelab,
+  .contact {
+    padding: 80px 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile (320px - 767px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  :root {
+    --container-max: 100%;
+    --nav-height: 56px;
+  }
+  
+  /* ---- Navigation ---- */
+  .nav {
+    padding: 0 16px;
+  }
+  
   .nav__links,
   .nav__actions {
     display: none;
@@ -1173,29 +1303,575 @@ body { background: var(--linen-base); }
     transform: rotate(-45deg) translate(5px, -5px);
   }
   
+  /* Mobile nav enhancements */
+  .mobile-nav {
+    padding: calc(var(--nav-height) + 16px) 16px 16px;
+  }
+  
+  .mobile-nav__link {
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 12px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(248,248,248,0.8));
+    margin-bottom: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  
+  /* ---- Hero Section ---- */
   .hero {
     min-height: auto;
-    padding: calc(var(--nav-height) + 60px) 24px 80px;
+    padding: calc(var(--nav-height) + 32px) 16px 60px;
   }
   
-  .hero__actions {
-    flex-direction: column;
-    align-items: stretch;
+  .hero__title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    line-height: 1.15;
   }
   
-  .skills__grid,
+  .hero__subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .hero__badge {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+  
+  /* Credentials - 2 columns on mobile */
+  .hero__credentials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  
+  .hero__credential {
+    font-size: 11px;
+    padding: 8px 10px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero__credential:nth-child(3) {
+    grid-column: span 2;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  
+  .hero__credential svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* Hero buttons - stack vertically */
+  .hero__actions > div {
+    flex-direction: column !important;
+    width: 100%;
+  }
+  
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* ---- Skills Section ---- */
+  .skills {
+    padding: 60px 16px;
+  }
+  
+  .skills__header {
+    margin-bottom: 40px;
+  }
+  
+  .skills__title {
+    font-size: 1.5rem;
+  }
+  
+  .skills__subtitle {
+    font-size: 15px;
+  }
+  
+  .skills__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .skill-card {
+    padding: 20px;
+  }
+  
+  .skill-card__icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+  }
+  
+  .skill-card__icon svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .skill-card__title {
+    font-size: 16px;
+  }
+  
+  .skill-card__description {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  
+  .skill-card__tags {
+    gap: 6px;
+  }
+  
+  .skill-card__tag {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+  
+  /* ---- Resume Section ---- */
+  .resume {
+    padding: 60px 16px;
+  }
+  
+  .resume__title {
+    font-size: 1.5rem;
+  }
+  
+  .resume__container {
+    padding: 0;
+  }
+  
+  .resume__page {
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  
+  /* Resume buttons - stack vertically */
+  .resume__actions > div {
+    flex-direction: column !important;
+    width: 100%;
+  }
+  
+  .resume__actions .btn {
+    width: 100%;
+  }
+  
+  /* ---- Homelab Section ---- */
+  .homelab {
+    padding: 60px 16px;
+  }
+  
+  .homelab__title {
+    font-size: 1.5rem;
+  }
+  
+  .homelab__subtitle {
+    font-size: 15px;
+  }
+  
+  /* Widgets - 2x2 grid on mobile */
+  .homelab__widgets {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  
+  .widget {
+    border-radius: 12px;
+  }
+  
+  .widget__header {
+    padding: 10px 14px;
+  }
+  
+  .widget__title {
+    font-size: 10px;
+  }
+  
+  .widget__body {
+    padding: 14px;
+  }
+  
+  .widget__value {
+    font-size: 24px;
+  }
+  
+  .widget__label {
+    font-size: 11px;
+  }
+  
+  /* Service health panel */
+  .homelab__health {
+    margin-bottom: 32px !important;
+    border-radius: 12px !important;
+  }
+  
+  .homelab__health ul li {
+    padding: 12px 16px !important;
+  }
+  
+  .homelab__health ul li span:first-child {
+    font-size: 13px !important;
+  }
+  
+  /* Narrative cards - single column */
+  .homelab__narrative-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  .homelab__narrative-grid .card-elevated {
+    padding: 20px !important;
+  }
+  
+  /* Project cards - single column */
   .homelab__projects {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .project-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .project-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  
+  .project-card__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .project-card__title {
+    font-size: 16px;
+  }
+  
+  .project-card__description {
+    font-size: 13px;
+  }
+  
+  .project-card__stats {
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .project-card__stat-value {
+    font-size: 18px;
+  }
+  
+  .project-card__stat-label {
+    font-size: 9px;
+  }
+  
+  .project-card__tags {
+    gap: 4px;
+  }
+  
+  .project-card__tag {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+  
+  .project-card__cta {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  /* Homelab CTA */
+  .homelab__cta .btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+  
+  /* ---- Contact Section ---- */
+  .contact {
+    padding: 60px 16px;
+  }
+  
+  .contact__title {
+    font-size: 1.5rem;
+  }
+  
+  .contact__subtitle {
+    font-size: 15px;
+  }
+  
+  .contact__form {
+    border-radius: 12px;
+  }
+  
+  .form-group__input,
+  .form-group__textarea {
+    padding: 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 48px;
+  }
+  
+  .contact__form-footer {
+    padding: 16px;
+  }
+  
+  .contact__form-footer .btn {
+    min-height: 48px;
+    font-size: 15px;
+  }
+  
+  /* Alternative contact buttons */
+  .contact__alternatives-buttons {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  .contact__alternatives-buttons .btn {
+    width: 100%;
+  }
+  
+  /* ---- Footer ---- */
+  .footer {
+    padding: 40px 16px;
   }
   
   .footer__container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     text-align: center;
+    gap: 24px;
+  }
+  
+  .footer__brand {
+    font-size: 16px;
+  }
+  
+  .footer__text {
+    font-size: 13px;
   }
   
   .footer__links {
     justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .footer__link {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  /* ---- Toast ---- */
+  .toast {
+    left: 16px;
+    right: 16px;
+    transform: translateX(0) translateY(120%);
+    width: auto;
+    font-size: 13px;
+    padding: 14px 18px;
+  }
+  
+  .toast.is-visible {
+    transform: translateX(0) translateY(0);
+  }
+  
+  /* ---- Modal ---- */
+  .modal-overlay {
+    padding: 16px !important;
+  }
+  
+  .modal {
+    border-radius: 12px !important;
+    max-height: 85vh !important;
+  }
+  
+  .modal__header {
+    padding: 16px !important;
+  }
+  
+  .modal__header h3 {
+    font-size: 16px !important;
+  }
+  
+  .modal__body {
+    padding: 16px !important;
+  }
+  
+  .modal__body pre {
+    font-size: 11px !important;
+    padding: 16px !important;
+  }
+  
+  .modal__footer {
+    padding: 12px 16px !important;
+    flex-direction: column !important;
+  }
+  
+  .modal__footer .btn {
+    width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Small Mobile (320px - 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 1.5rem;
+  }
+  
+  .hero__credentials {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero__credential:nth-child(3) {
+    grid-column: span 1;
+    max-width: none;
+  }
+  
+  /* Widgets - stack vertically on very small screens */
+  .homelab__widgets {
+    grid-template-columns: 1fr;
+  }
+  
+  .widget__value {
+    font-size: 28px;
+  }
+  
+  /* Project stats - adjust for small screens */
+  .project-card__stats {
+    flex-wrap: wrap;
+  }
+  
+  .project-card__stat {
+    min-width: 60px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Touch Device Optimizations
+   -------------------------------------------------------------------------- */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger tap targets */
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .nav__link {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+  
+  .footer__link {
+    min-height: 44px;
+  }
+  
+  /* Remove hover transform effects */
+  .btn:hover {
+    transform: none !important;
+  }
+  
+  .skill-card:hover,
+  .project-card:hover,
+  .widget:hover {
+    transform: none !important;
+  }
+  
+  /* Ensure active states work */
+  .btn:active {
+    transform: scale(0.97) !important;
+  }
+  
+  .skill-card:active,
+  .project-card:active {
+    transform: scale(0.98) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   High DPI / Retina Displays
+   -------------------------------------------------------------------------- */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Ensure crisp borders */
+  .btn,
+  .skill-card,
+  .widget,
+  .project-card {
+    border-width: 0.5px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Landscape Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: calc(var(--nav-height) + 24px) 16px 40px;
+  }
+  
+  .hero__title {
+    font-size: 1.5rem;
+  }
+  
+  .hero__credentials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .hero__credential:nth-child(3) {
+    grid-column: auto;
+  }
+  
+  /* Side by side buttons in landscape */
+  .hero__actions > div {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+  }
+  
+  .hero__actions .btn {
+    width: auto;
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print Styles
+   -------------------------------------------------------------------------- */
+@media print {
+  .nav,
+  .mobile-nav,
+  .toast,
+  .modal-overlay,
+  .hero__actions,
+  .contact__form,
+  .footer__links {
+    display: none !important;
+  }
+  
+  .hero,
+  .skills,
+  .resume,
+  .homelab,
+  .contact,
+  .footer {
+    padding: 20px 0;
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  
+  .skill-card,
+  .project-card,
+  .widget {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
   }
 }
 
@@ -1466,6 +2142,7 @@ body { background: var(--linen-base); }
         <span class="homelab__label">Live Infrastructure</span>
         <h2 class="homelab__title">Homelab Dashboard</h2>
         <p class="homelab__subtitle">Production-grade infrastructure showcasing enterprise DevOps practices at home scale.</p>
+        <p id="stats-timestamp" style="font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 8px;">Last updated: just now</p>
       </div>
       
       <!-- Dashboard Widgets -->
@@ -1710,7 +2387,7 @@ body { background: var(--linen-base); }
       <div style="margin-top: 40px; text-align: center;">
         <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 16px;">Or reach me directly:</p>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-          <a href="mailto:ajgreenboy@gmail.com" class="btn btn-metal btn--sm">
+          <a href="/cdn-cgi/l/email-protection#0c6d607b696562697e2278696f644c6b616d6560226f6361" class="btn btn-metal btn--sm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             Email
           </a>
@@ -1736,7 +2413,7 @@ body { background: var(--linen-base); }
       <p class="footer__text" style="color: rgba(255,255,255,0.5);">Built with care in Minneapolis, Minnesota</p>
     </div>
     <div class="footer__links">
-      <a href="mailto:ajgreenboy@gmail.com" class="footer__link" style="color: rgba(255,255,255,0.7); background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.15); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);">
+      <a href="/cdn-cgi/l/email-protection#92f3fee5f7fbfcf7e0bce6f7f1fad2f5fff3fbfebcf1fdff" class="footer__link" style="color: rgba(255,255,255,0.7); background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.15); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Email
       </a>
@@ -1773,7 +2450,7 @@ body { background: var(--linen-base); }
     <div class="modal__body">
       <pre class="modal__content">ALBERT WEINER
 Infrastructure Engineer & Security Specialist
-Minneapolis, MN | ajgreenboy@gmail.com
+Minneapolis, MN | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="46272a31232f282334683223252e06212b272f2a6825292b">[email&#160;protected]</a>
 LinkedIn: linkedin.com/in/al-weiner-29865529a
 GitHub: github.com/ajgreenboy
 
@@ -1852,7 +2529,7 @@ ADDITIONAL
       <pre style="font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--text-primary); white-space: pre-wrap; background: #fafafa; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">ALBERT WEINER
 Infrastructure Engineer & Security Specialist
 Minneapolis, Minnesota
-ajgreenboy@gmail.com | linkedin.com/in/al-weiner-29865529a | github.com/ajgreenboy
+<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f899948f9d91969d8ad68c9d9b90b89f95999194d69b9795">[email&#160;protected]</a> | linkedin.com/in/al-weiner-29865529a | github.com/ajgreenboy
 
 ================================================================================
 SUMMARY
@@ -2132,7 +2809,7 @@ CERTIFICATIONS (In Progress)
 </style>
 
 <!-- Scripts -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -2223,17 +2900,137 @@ formFields.forEach(field => {
   });
 });
 
+// =============================================================================
+// Phase 5: Contact Form Backend Integration
+// =============================================================================
+
+// Configuration - Replace with your actual Google Apps Script URL after deployment
+const CONTACT_FORM_CONFIG = {
+  // Set this to your deployed Google Apps Script Web App URL
+  // Example: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'
+  appsScriptUrl: null, // Set to null to use mailto fallback
+  
+  // Fallback email if Apps Script is not configured
+  fallbackEmail: 'alweiner.tech@gmail.com'
+};
+
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  
+  // Validate all fields
   let isFormValid = true;
   formFields.forEach(field => {
     if (!validateField(field)) isFormValid = false;
   });
-  if (isFormValid) {
-    contactForm.reset();
-    showToast('Message sent successfully!', 'success');
+  
+  if (!isFormValid) return;
+  
+  // Get form data
+  const formData = {
+    name: document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    message: document.getElementById('message').value.trim(),
+    timestamp: new Date().toISOString(),
+    source: 'portfolio-contact-form'
+  };
+  
+  // Get submit button and save original state
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const originalContent = submitBtn.innerHTML;
+  
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `
+    <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="animation: spin 1s linear infinite;">
+      <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+      <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+    </svg>
+    Sending...
+  `;
+  
+  try {
+    if (CONTACT_FORM_CONFIG.appsScriptUrl) {
+      // Use Google Apps Script backend
+      const response = await fetch(CONTACT_FORM_CONFIG.appsScriptUrl, {
+        method: 'POST',
+        mode: 'no-cors', // Required for Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      // Note: no-cors mode doesn't return response body, so we assume success
+      // In production, you might want to use a different approach
+      showToast("Message sent! I'll respond within 24 hours.", 'success');
+      contactForm.reset();
+      
+      // Reset validation states
+      formFields.forEach(field => {
+        field.classList.remove('is-valid', 'is-error');
+        field.closest('.form-group').classList.remove('is-valid', 'has-error');
+      });
+      
+    } else {
+      // Fallback: Open mailto link
+      const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n\n` +
+        `Message:\n${formData.message}\n\n` +
+        `---\nSent from unfunky.xyz contact form`
+      );
+      
+      window.location.href = `mailto:${CONTACT_FORM_CONFIG.fallbackEmail}?subject=${subject}&body=${body}`;
+      
+      showToast('Opening your email client...', 'success');
+      
+      // Reset form after a short delay
+      setTimeout(() => {
+        contactForm.reset();
+        formFields.forEach(field => {
+          field.classList.remove('is-valid', 'is-error');
+          field.closest('.form-group').classList.remove('is-valid', 'has-error');
+        });
+      }, 1000);
+    }
+    
+  } catch (error) {
+    console.error('Form submission error:', error);
+    
+    // Offer fallback
+    const useFallback = confirm(
+      'There was an issue sending your message. Would you like to send it via email instead?'
+    );
+    
+    if (useFallback) {
+      const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n\n` +
+        `Message:\n${formData.message}`
+      );
+      window.location.href = `mailto:${CONTACT_FORM_CONFIG.fallbackEmail}?subject=${subject}&body=${body}`;
+    } else {
+      showToast('Please try emailing me directly at ' + CONTACT_FORM_CONFIG.fallbackEmail, 'error');
+    }
+    
+  } finally {
+    // Restore button state
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalContent;
   }
 });
+
+// Add spinner animation
+const spinnerStyle = document.createElement('style');
+spinnerStyle.textContent = `
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`;
+document.head.appendChild(spinnerStyle);
 
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
@@ -2464,21 +3261,187 @@ function initEnhancedFormValidation() {
 }
 
 // --------------------------------------------------------------------------
-// Simulated Live Stats (for demo purposes)
+// Phase 5: Live Homelab Stats Loading
 // --------------------------------------------------------------------------
-function initLiveStatsSimulation() {
-  // Update "last updated" timestamp
-  function updateTimestamp() {
-    const timestampEl = document.getElementById('stats-timestamp');
-    if (timestampEl) {
-      const now = new Date();
-      timestampEl.textContent = `Last updated: ${now.toLocaleTimeString()}`;
-    }
+
+// Configuration for live stats
+const HOMELAB_STATS_CONFIG = {
+  // URL to your homelab-stats.json file
+  // Options:
+  // - Local file: './homelab-stats.json'
+  // - GitHub Pages: 'https://username.github.io/repo/homelab-stats.json'
+  // - Direct from homelab: 'https://stats.yourdomain.com/homelab-stats.json'
+  statsUrl: null, // Set to null to use default values
+  
+  // How often to refresh stats (in milliseconds)
+  // 5 minutes = 300000
+  refreshInterval: 300000,
+  
+  // Default values if live stats aren't available
+  defaults: {
+    uptime: 99.7,
+    security: 2847,
+    containers: 24,
+    storage: 6
+  }
+};
+
+/**
+ * Fetches live homelab stats from JSON endpoint
+ */
+async function fetchHomelabStats() {
+  if (!HOMELAB_STATS_CONFIG.statsUrl) {
+    return null;
   }
   
-  // Simulate periodic updates (every 5 minutes in real deployment)
-  // For demo, just set the timestamp once
-  updateTimestamp();
+  try {
+    const response = await fetch(HOMELAB_STATS_CONFIG.statsUrl, {
+      cache: 'no-cache'
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+    
+  } catch (error) {
+    console.warn('Could not fetch live homelab stats:', error.message);
+    return null;
+  }
+}
+
+/**
+ * Updates the dashboard with live stats
+ */
+async function updateDashboardStats() {
+  const stats = await fetchHomelabStats();
+  
+  if (!stats) {
+    // Use defaults
+    return;
+  }
+  
+  // Update stat values (these will be animated by initCountUpAnimations)
+  const statElements = [
+    { id: 'stat-uptime', value: stats.uptime?.percentage, suffix: '%' },
+    { id: 'stat-security', value: stats.security?.attacks_blocked_24h, suffix: '' },
+    { id: 'stat-containers', value: stats.containers?.running, suffix: '' },
+    { id: 'stat-storage', value: stats.storage?.total_tb, suffix: ' TB' }
+  ];
+  
+  statElements.forEach(stat => {
+    const el = document.getElementById(stat.id);
+    if (el && stat.value !== undefined) {
+      // Update the target value for animation
+      el.dataset.target = stat.value;
+      el.dataset.suffix = stat.suffix;
+    }
+  });
+  
+  // Update service health indicators
+  if (stats.services && Array.isArray(stats.services)) {
+    updateServiceHealth(stats.services);
+  }
+  
+  // Update timestamp
+  updateStatsTimestamp(stats.timestamp);
+  
+  console.log('📊 Homelab stats updated:', new Date().toLocaleTimeString());
+}
+
+/**
+ * Updates service health indicators
+ */
+function updateServiceHealth(services) {
+  const serviceList = document.querySelector('.homelab__health ul');
+  if (!serviceList) return;
+  
+  services.forEach(service => {
+    // Find the service item by name
+    const serviceItems = serviceList.querySelectorAll('li');
+    serviceItems.forEach(item => {
+      const nameEl = item.querySelector('span[style*="font-weight: 500"]');
+      if (nameEl && nameEl.textContent.trim() === service.name) {
+        // Update LED indicator
+        const led = item.querySelector('span[style*="border-radius: 50%"]');
+        if (led) {
+          const statusColors = {
+            'healthy': 'var(--success-green)',
+            'warning': 'var(--warning-orange)',
+            'degraded': 'var(--warning-orange)',
+            'unhealthy': 'var(--error-red)',
+            'stopped': 'var(--error-red)'
+          };
+          const color = statusColors[service.status] || statusColors.healthy;
+          led.style.background = color;
+          led.style.boxShadow = `0 0 6px ${color}, 0 0 12px ${color}40`;
+        }
+        
+        // Update status text
+        const statusEl = item.querySelector('span[style*="font-family: var(--font-mono)"]');
+        if (statusEl) {
+          statusEl.textContent = service.status.charAt(0).toUpperCase() + service.status.slice(1);
+          statusEl.style.color = service.status === 'healthy' ? 'var(--success-green)' : 
+                                  service.status === 'warning' ? 'var(--warning-orange)' : 
+                                  'var(--error-red)';
+        }
+      }
+    });
+  });
+}
+
+/**
+ * Updates the "last updated" timestamp
+ */
+function updateStatsTimestamp(timestamp) {
+  const timestampEl = document.getElementById('stats-timestamp');
+  if (!timestampEl) return;
+  
+  if (timestamp) {
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffMinutes = Math.floor((now - date) / 60000);
+    
+    let timeAgo;
+    if (diffMinutes < 1) {
+      timeAgo = 'just now';
+    } else if (diffMinutes < 60) {
+      timeAgo = `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+    } else {
+      const diffHours = Math.floor(diffMinutes / 60);
+      timeAgo = `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+    }
+    
+    timestampEl.textContent = `Last updated: ${timeAgo}`;
+  } else {
+    timestampEl.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+  }
+}
+
+/**
+ * Initialize live stats system
+ */
+function initLiveStatsSimulation() {
+  // Initial timestamp update
+  updateStatsTimestamp();
+  
+  // If live stats URL is configured, set up auto-refresh
+  if (HOMELAB_STATS_CONFIG.statsUrl) {
+    // Initial fetch
+    updateDashboardStats();
+    
+    // Set up periodic refresh
+    setInterval(updateDashboardStats, HOMELAB_STATS_CONFIG.refreshInterval);
+    
+    // Also refresh when tab becomes visible again
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        updateDashboardStats();
+      }
+    });
+  }
 }
 
 // --------------------------------------------------------------------------
