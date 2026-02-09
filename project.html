@@ -91,6 +91,7 @@
         padding-bottom: 0.75rem;
         border-bottom: 2px solid rgba(19, 91, 236, 0.3);
         letter-spacing: -0.02em;
+        scroll-margin-top: 100px;
     }
 
     .markdown-content h1:first-child {
@@ -104,6 +105,7 @@
         margin-top: 2rem;
         margin-bottom: 1rem;
         letter-spacing: -0.01em;
+        scroll-margin-top: 100px;
     }
 
     .markdown-content h3 {
@@ -112,6 +114,7 @@
         color: #cbd5e1;
         margin-top: 1.5rem;
         margin-bottom: 0.75rem;
+        scroll-margin-top: 100px;
     }
 
     .markdown-content h4 {
@@ -120,6 +123,7 @@
         color: #cbd5e1;
         margin-top: 1.25rem;
         margin-bottom: 0.5rem;
+        scroll-margin-top: 100px;
     }
 
     .markdown-content h5, .markdown-content h6 {
@@ -128,6 +132,29 @@
         color: #cbd5e1;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
+        scroll-margin-top: 100px;
+    }
+
+    /* Highlight heading when targeted by TOC link */
+    .markdown-content h1:target,
+    .markdown-content h2:target,
+    .markdown-content h3:target,
+    .markdown-content h4:target,
+    .markdown-content h5:target,
+    .markdown-content h6:target {
+        animation: highlight-flash 2s ease-out;
+    }
+
+    @keyframes highlight-flash {
+        0% {
+            background: rgba(19, 91, 236, 0.3);
+            padding: 0.5rem;
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+        }
+        100% {
+            background: transparent;
+        }
     }
 
     .markdown-content p {
@@ -669,7 +696,22 @@
             homepageLink.classList.remove('hidden');
         }
 
-        // Parse and display README
+        // Parse and display README with proper heading IDs for TOC links
+        marked.use({
+            renderer: {
+                heading(text, level) {
+                    // Generate GitHub-style heading IDs
+                    const escapedText = text.toLowerCase()
+                        .replace(/[^\w\s-]/g, '') // Remove special chars
+                        .replace(/\s+/g, '-')      // Replace spaces with dashes
+                        .replace(/-+/g, '-')       // Replace multiple dashes with single
+                        .trim();
+
+                    return `<h${level} id="${escapedText}">${text}</h${level}>`;
+                }
+            }
+        });
+
         marked.setOptions({
             highlight: function(code, lang) {
                 if (lang && hljs.getLanguage(lang)) {
@@ -691,6 +733,47 @@
 
         // Fix badge images layout - make them horizontal
         fixBadgeLayout();
+
+        // Enable smooth scrolling for TOC links
+        enableTOCLinks();
+    }
+
+    function enableTOCLinks() {
+        const readmeContent = document.getElementById('readme-content');
+
+        // Find all anchor links that point to headings (TOC links)
+        readmeContent.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Smooth scroll to the target heading
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Update URL hash without jumping
+                    history.pushState(null, null, '#' + targetId);
+                }
+            });
+        });
+
+        // Handle direct URL with hash (e.g., coming from external link)
+        if (window.location.hash) {
+            setTimeout(() => {
+                const targetId = window.location.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 500); // Small delay to ensure content is rendered
+        }
     }
 
     function fixBadgeLayout() {
