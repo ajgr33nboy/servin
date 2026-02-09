@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBSNBYKMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1SBSNBYKMD');
+</script>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Homelab Infrastructure Case Study | Albert Weiner</title>
+<meta name="description" content="Production-grade homelab infrastructure with 24+ containerized services, comprehensive monitoring, and security hardening.">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#135bec",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#101622",
+                },
+                fontFamily: {
+                    "display": ["Space Grotesk"],
+                    "mono": ["JetBrains Mono"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .blueprint-grid {
+        background-image: radial-gradient(circle, rgba(19, 91, 236, 0.1) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+    .glass-panel {
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-link {
+        position: relative;
+        transition: color 0.2s ease;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #135bec;
+        transition: width 0.2s ease;
+    }
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+<!-- Fixed Navigation Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                <span class="material-icons text-white text-sm">architecture</span>
+            </div>
+            <a href="../index.html" class="text-sm font-bold tracking-tight uppercase tracking-widest text-primary hover:opacity-80 transition-opacity">
+                Albert Weiner
+            </a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="../projects.html" class="hidden md:flex items-center gap-2 text-sm text-slate-400 hover:text-primary transition-colors">
+                <span class="material-icons text-sm">arrow_back</span>
+                Back to Projects
+            </a>
+            <a href="https://cal.com/albert-weiner-jlsyg1" target="_blank" rel="noopener noreferrer" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded flex items-center gap-2 text-sm font-medium transition-all">
+                <span class="material-icons text-sm">calendar_today</span>
+                Schedule Call
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-[1600px] mx-auto flex flex-col lg:flex-row min-h-[calc(100vh-64px)]">
+    <!-- Main Content Area -->
+    <section class="flex-1 p-6 lg:p-10 blueprint-grid overflow-y-auto">
+        <!-- Hero Image Placeholder -->
+        <div class="relative w-full aspect-[21/9] rounded-xl overflow-hidden border-2 border-dashed border-primary/40 bg-slate-100 dark:bg-slate-900/50 flex flex-col items-center justify-center mb-12">
+            <div class="text-center">
+                <span class="material-icons text-primary/40 text-6xl mb-4">storage</span>
+                <p class="font-mono text-primary text-xl font-bold italic">Homelab Infrastructure Diagram</p>
+                <p class="text-slate-400 text-xs mt-2 uppercase tracking-widest">Production-Grade Server Architecture</p>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-12">
+            <!-- Title & Meta section -->
+            <div class="border-l-4 border-primary pl-6 py-2">
+                <h1 class="text-4xl font-bold mb-4">Homelab Infrastructure</h1>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <div class="flex items-center gap-2">
+                        <span class="material-icons text-slate-400 text-sm">calendar_today</span>
+                        <span class="font-mono text-sm text-primary">Completed: January 2025</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">Docker</span>
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">Debian</span>
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">Prometheus</span>
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">Grafana</span>
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">Tailscale</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenge Statement Section -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 text-slate-500 uppercase tracking-widest text-xs font-bold">
+                    <span class="material-icons text-sm">description</span>
+                    The Challenge
+                </div>
+                <div class="p-8 glass-panel rounded-xl border-slate-200 dark:border-slate-800">
+                    <p class="text-xl leading-relaxed italic text-slate-600 dark:text-slate-400">
+                        "Design and implement a production-grade homelab infrastructure that demonstrates enterprise-level practices including containerization, monitoring, security hardening, and high availability—all while maintaining cost-effectiveness and scalability for future services."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Key Results / Metrics Grid -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-2 text-slate-500 uppercase tracking-widest text-xs font-bold">
+                    <span class="material-icons text-sm">analytics</span>
+                    Key Results & KPIs
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Metric Card 1 -->
+                    <div class="p-6 rounded-xl border border-primary/10 bg-primary/5 relative group">
+                        <h4 class="text-4xl font-bold text-primary mb-1">24+</h4>
+                        <p class="text-slate-500 text-sm font-medium">Containerized Services</p>
+                        <div class="mt-4 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="w-full h-full bg-primary/40"></div>
+                        </div>
+                    </div>
+                    <!-- Metric Card 2 -->
+                    <div class="p-6 rounded-xl border border-primary/10 bg-primary/5 relative group">
+                        <h4 class="text-4xl font-bold text-primary mb-1">99.5%</h4>
+                        <p class="text-slate-500 text-sm font-medium">Uptime Achievement</p>
+                        <div class="mt-4 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="w-[99.5%] h-full bg-primary/40"></div>
+                        </div>
+                    </div>
+                    <!-- Metric Card 3 -->
+                    <div class="p-6 rounded-xl border border-primary/10 bg-primary/5 relative group">
+                        <h4 class="text-4xl font-bold text-primary mb-1">6TB</h4>
+                        <p class="text-slate-500 text-sm font-medium">Storage Capacity</p>
+                        <div class="mt-4 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="w-2/3 h-full bg-primary/40"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Deep-Dive Content -->
+            <div class="space-y-8 pb-20">
+                <div class="flex items-center gap-2 text-slate-500 uppercase tracking-widest text-xs font-bold">
+                    <span class="material-icons text-sm">article</span>
+                    Technical Deep-Dive
+                </div>
+
+                <!-- Infrastructure Overview -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Infrastructure Overview</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        The homelab runs on a Debian 13 (Trixie) server with 16GB RAM, 6TB storage configured with LVM for flexible volume management, and Intel i5 processor. The entire infrastructure is containerized using Docker and orchestrated with Docker Compose for declarative service management.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Key services include: Prometheus for metrics collection, Grafana for visualization, Portainer for container management, Uptime Kuma for service monitoring, Watchtower for automated updates, and Fail2Ban for intrusion prevention.
+                    </p>
+                </div>
+
+                <!-- Container Orchestration -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Container Orchestration</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        All services are deployed as Docker containers with dedicated networks for isolation. Docker Compose files define service dependencies, health checks, restart policies, and resource limits. Volume mounts are used for persistent data storage with regular backup schedules.
+                    </p>
+                    <div class="bg-slate-900 rounded-lg p-6 font-mono text-sm my-6 overflow-x-auto">
+                        <pre class="text-slate-300"><code>version: '3.8'
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped</code></pre>
+                    </div>
+                </div>
+
+                <!-- Networking & Remote Access -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Networking & Remote Access</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Network segmentation is achieved through Docker bridge networks and UFW firewall rules. Remote access is secured via Tailscale VPN, eliminating the need for port forwarding and providing zero-trust network access. OpenWRT router handles local network routing and acts as a DNS server with custom domain resolution.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Nginx reverse proxy handles SSL/TLS termination with Let's Encrypt certificates, routing traffic to internal services based on subdomain. Cloudflare provides DNS management and DDoS protection for public-facing services.
+                    </p>
+                </div>
+
+                <!-- Security Hardening -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Security Hardening</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Security measures include: SSH key-only authentication with password authentication disabled, UFW firewall with default-deny policy, Fail2Ban for automated IP banning after failed login attempts, and regular security updates via unattended-upgrades.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        All containers run with least-privilege principles—non-root users where possible, read-only filesystems for immutable services, and security scanning with Docker Bench for Security. Secrets are managed via Docker secrets and environment variables stored in encrypted .env files.
+                    </p>
+                </div>
+
+                <!-- Monitoring Stack -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Monitoring Stack</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Prometheus collects metrics from Node Exporter (system metrics), cAdvisor (container metrics), and service-specific exporters. Grafana dashboards provide real-time visualization of CPU, memory, disk I/O, network traffic, and container health.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Uptime Kuma monitors service availability with configurable health checks and alert notifications via Discord webhooks. Custom Prometheus alert rules trigger on critical conditions like high disk usage or service downtime.
+                    </p>
+                </div>
+
+                <!-- Backup Strategy -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Backup Strategy</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Automated backup solution using rsync and systemd timers for scheduled incremental backups. Docker volume data is backed up to external storage daily, with weekly full system snapshots using LVM snapshots.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Configuration files and Docker Compose definitions are version-controlled in a private Git repository for disaster recovery and infrastructure-as-code practices. Backup verification scripts ensure data integrity.
+                    </p>
+                </div>
+
+                <!-- Lessons Learned -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Lessons Learned</h2>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li><strong class="text-primary">Container Orchestration:</strong> Docker Compose simplifies multi-service management, but proper health checks and restart policies are critical for resilience.</li>
+                        <li><strong class="text-primary">Monitoring First:</strong> Implementing monitoring early in the infrastructure lifecycle enables proactive issue detection and capacity planning.</li>
+                        <li><strong class="text-primary">Security Layers:</strong> Defense-in-depth approach with multiple security layers (firewall, VPN, authentication, IDS) provides comprehensive protection.</li>
+                        <li><strong class="text-primary">Documentation:</strong> Maintaining infrastructure documentation and runbooks accelerates troubleshooting and onboarding.</li>
+                        <li><strong class="text-primary">Automation:</strong> Automated updates and backups reduce manual overhead and improve reliability.</li>
+                    </ul>
+                </div>
+
+                <!-- GitHub Link -->
+                <div class="flex items-center justify-center pt-8">
+                    <a href="https://github.com/ajgreenboy" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-all group">
+                        <span class="material-icons">code</span>
+                        <span>View on GitHub</span>
+                        <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Sidebar -->
+    <aside class="w-full lg:w-96 bg-white dark:bg-background-dark border-l border-slate-200 dark:border-slate-800 lg:sticky top-0 overflow-y-auto lg:h-screen">
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-8">
+                <span class="material-icons text-primary">source</span>
+                <h3 class="font-bold text-sm uppercase tracking-widest">Tech Stack</h3>
+            </div>
+
+            <!-- Technology List -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Core Technologies</span>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Debian 13 (Trixie)</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Base operating system</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Docker & Compose</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Container orchestration</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Prometheus + Grafana</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Monitoring stack</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Tailscale VPN</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Zero-trust networking</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Nginx Proxy</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Reverse proxy & SSL</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Stats -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Project Stats</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-3">
+                        <p class="text-[11px] font-mono text-slate-500 mb-1">Services Running</p>
+                        <p class="text-2xl font-bold text-primary">24+</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-3">
+                        <p class="text-[11px] font-mono text-slate-500 mb-1">Uptime</p>
+                        <p class="text-2xl font-bold text-green-500">99.5%</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-3">
+                        <p class="text-[11px] font-mono text-slate-500 mb-1">Storage</p>
+                        <p class="text-2xl font-bold text-primary">6TB</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Links -->
+            <div class="mt-12 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                <div class="flex items-center gap-2 text-primary mb-3">
+                    <span class="material-icons text-sm">link</span>
+                    <span class="text-xs font-bold uppercase">Project Links</span>
+                </div>
+                <div class="space-y-2">
+                    <a href="https://github.com/ajgreenboy" target="_blank" rel="noopener noreferrer" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        → GitHub Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/30 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+        <p class="text-sm text-slate-400 font-mono">
+            © 2025 Albert Weiner. Built with <span class="text-primary">Tailwind CSS</span>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

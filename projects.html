@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBSNBYKMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1SBSNBYKMD');
+</script>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Projects | Albert Weiner — Infrastructure & Security Engineer</title>
+<meta name="description" content="Projects and case studies by Albert Weiner - Infrastructure and security engineering work.">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#135bec",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#101622",
+                },
+                fontFamily: {
+                    "display": ["Space Grotesk"],
+                    "mono": ["JetBrains Mono"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .blueprint-pattern {
+        background-image: radial-gradient(circle at 2px 2px, rgba(19, 91, 236, 0.05) 1px, transparent 0);
+        background-size: 24px 24px;
+    }
+    .nav-link {
+        position: relative;
+        transition: color 0.2s ease;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #135bec;
+        transition: width 0.2s ease;
+    }
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen blueprint-pattern">
+
+<!-- Fixed Navigation Header -->
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-primary/20 bg-background-dark/80 backdrop-blur-md">
+    <div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                <span class="material-icons text-white text-sm">settings_input_component</span>
+            </div>
+            <a href="index.html" class="text-sm font-bold tracking-tight uppercase tracking-widest text-primary hover:opacity-80 transition-opacity">
+                Albert Weiner
+            </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+            <div class="flex gap-6">
+                <a class="text-sm hover:text-primary transition-colors nav-link" href="index.html">Home</a>
+                <a class="text-sm text-primary transition-colors nav-link" href="projects.html">Projects</a>
+                <a class="text-sm hover:text-primary transition-colors nav-link" href="index.html#resume">Resume</a>
+            </div>
+            <a href="https://cal.com/albert-weiner-jlsyg1" target="_blank" rel="noopener noreferrer" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded text-sm font-medium transition-all">
+                Schedule Call
+            </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-primary">
+            <span class="material-icons">menu</span>
+        </button>
+    </div>
+</header>
+
+<!-- Mobile Navigation Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 md:hidden">
+    <div class="flex flex-col h-full pt-20 px-6">
+        <a class="text-lg py-4 border-b border-primary/20 hover:text-primary transition-colors" href="index.html">Home</a>
+        <a class="text-lg py-4 border-b border-primary/20 text-primary transition-colors" href="projects.html">Projects</a>
+        <a class="text-lg py-4 border-b border-primary/20 hover:text-primary transition-colors" href="index.html#resume">Resume</a>
+        <a href="https://cal.com/albert-weiner-jlsyg1" target="_blank" rel="noopener noreferrer" class="mt-6 bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded text-center font-medium transition-all">
+            Schedule Call
+        </a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="max-w-[1600px] mx-auto pt-24 px-6 pb-12">
+    <!-- Page Header -->
+    <div class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Projects & Case Studies</h1>
+        <p class="text-lg text-slate-400 max-w-2xl">
+            A collection of infrastructure, security, and development projects demonstrating my technical expertise.
+        </p>
+    </div>
+
+    <!-- Filter/Sort Toolbar -->
+    <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-4 rounded-xl flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-lg text-primary text-xs font-mono">
+                <span class="font-bold">All Projects</span>
+                <span class="text-slate-400">(2)</span>
+            </div>
+            <div class="flex gap-2">
+                <button class="px-3 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2 transition-colors">
+                    <span class="material-icons text-sm">filter_list</span>
+                    Filter
+                </button>
+                <button class="px-3 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2 transition-colors">
+                    <span class="material-icons text-sm">sort</span>
+                    Sort by Date
+                </button>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center gap-2 text-[10px] text-slate-500 font-mono uppercase">
+            <span class="material-icons text-xs">storage</span>
+            Source: /projects
+        </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div id="projects-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <!-- Loading State -->
+        <div class="col-span-full flex items-center justify-center py-12">
+            <div class="flex flex-col items-center gap-4">
+                <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-slate-400 font-mono text-sm">Loading projects from GitHub...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty State (hidden by default) -->
+    <div id="empty-state" class="hidden col-span-full bg-slate-100/50 dark:bg-slate-900/30 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl p-12 text-center mt-6">
+        <div class="mb-4 inline-flex w-12 h-12 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500">
+            <span class="material-icons">search_off</span>
+        </div>
+        <h4 class="text-lg font-bold mb-1">No Projects Found</h4>
+        <p class="text-slate-500 text-sm font-mono">No documents matching the query were found.</p>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/30 mt-12">
+    <div class="max-w-[1600px] mx-auto px-6 py-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <p class="text-sm text-slate-400 font-mono">
+                    © 2025 Albert Weiner. Built with <span class="text-primary">Tailwind CSS</span> & <span class="text-primary">Space Grotesk</span>
+                </p>
+                <p class="text-xs text-slate-500 font-mono mt-1">
+                    Minneapolis, Minnesota
+                </p>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/ajgreenboy" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-icons">code</span>
+                </a>
+                <a href="https://linkedin.com/in/al-weiner-29865529a" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-icons">work</span>
+                </a>
+                <a href="mailto:ajgreenboy@gmail.com" class="text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-icons">email</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu and GitHub Integration -->
+<script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('translate-x-full');
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.add('translate-x-full');
+        }
+    });
+
+    // GitHub Projects Integration
+    const GITHUB_USERNAME = 'ajgreenboy';
+    const projectsGrid = document.getElementById('projects-grid');
+
+    // Project metadata for enhanced display (icons and categories)
+    const projectMetadata = {
+        'homelab-infrastructure': {
+            icon: 'storage',
+            category: 'Infrastructure'
+        },
+        'portfolio-website': {
+            icon: 'web',
+            category: 'Development'
+        }
+    };
+
+    // Determine icon based on topics or repo name
+    function getProjectIcon(repo) {
+        if (projectMetadata[repo.name]) {
+            return projectMetadata[repo.name].icon;
+        }
+
+        // Auto-detect icon from topics or name
+        const topics = (repo.topics || []).join(' ').toLowerCase();
+        const name = repo.name.toLowerCase();
+        const combined = topics + ' ' + name;
+
+        if (combined.includes('docker') || combined.includes('container')) return 'widgets';
+        if (combined.includes('security') || combined.includes('vpn')) return 'security';
+        if (combined.includes('web') || combined.includes('website') || combined.includes('portfolio')) return 'web';
+        if (combined.includes('api') || combined.includes('backend')) return 'api';
+        if (combined.includes('database') || combined.includes('db')) return 'storage';
+        if (combined.includes('network') || combined.includes('homelab')) return 'hub';
+        if (combined.includes('monitor') || combined.includes('grafana') || combined.includes('prometheus')) return 'analytics';
+        if (combined.includes('automation') || combined.includes('script')) return 'settings';
+
+        return 'folder';
+    }
+
+    // Determine category based on topics or repo characteristics
+    function getProjectCategory(repo) {
+        if (projectMetadata[repo.name]) {
+            return projectMetadata[repo.name].category;
+        }
+
+        const topics = (repo.topics || []).join(' ').toLowerCase();
+
+        if (topics.includes('infrastructure') || topics.includes('homelab')) return 'Infrastructure';
+        if (topics.includes('security') || topics.includes('cybersecurity')) return 'Security';
+        if (topics.includes('web') || topics.includes('frontend')) return 'Development';
+        if (topics.includes('devops') || topics.includes('automation')) return 'DevOps';
+        if (topics.includes('network')) return 'Networking';
+
+        return 'Project';
+    }
+
+    async function fetchGitHubProjects() {
+        try {
+            const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=20`);
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch repositories');
+            }
+
+            const repos = await response.json();
+
+            // Filter for relevant projects (exclude forks, empty repos)
+            const projects = repos.filter(repo =>
+                !repo.fork &&
+                repo.description &&
+                !repo.archived
+            );
+
+            if (projects.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            displayProjects(projects);
+
+        } catch (error) {
+            console.error('Error fetching GitHub projects:', error);
+            showErrorState(error.message);
+        }
+    }
+
+    function displayProjects(projects) {
+        projectsGrid.innerHTML = projects.map(repo => {
+            const icon = getProjectIcon(repo);
+            const category = getProjectCategory(repo);
+
+            const updatedDate = new Date(repo.updated_at).toLocaleDateString('en-US', {
+                month: 'short',
+                year: 'numeric'
+            });
+
+            // All projects link to dynamic project.html page
+            const linkUrl = `project.html?repo=${repo.name}`;
+
+            return `
+                <a href="${linkUrl}" class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden hover:border-primary/50 transition-all block">
+                    <div class="h-48 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative">
+                        <div class="absolute inset-0 blueprint-pattern opacity-50"></div>
+                        <div class="relative z-10">
+                            <span class="material-icons text-primary text-6xl">${icon}</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-2 py-0.5 bg-primary/20 text-primary rounded text-[10px] font-mono tracking-wider uppercase font-bold">${category}</span>
+                            <span class="text-slate-500 text-[10px] font-mono">Updated: ${updatedDate}</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                            ${formatRepoName(repo.name)}
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                            ${repo.description || 'No description available.'}
+                        </p>
+                        ${repo.topics && repo.topics.length > 0 ? `
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            ${repo.topics.slice(0, 5).map(topic => `
+                                <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">${topic}</span>
+                            `).join('')}
+                        </div>
+                        ` : ''}
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center gap-4">
+                                ${repo.stargazers_count > 0 ? `
+                                <div class="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+                                    <span class="material-icons text-[14px]">star</span>
+                                    ${repo.stargazers_count}
+                                </div>
+                                ` : ''}
+                                ${repo.language ? `
+                                <div class="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+                                    <span class="material-icons text-[14px]">code</span>
+                                    ${repo.language}
+                                </div>
+                                ` : ''}
+                            </div>
+                            <span class="material-icons text-primary text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }).join('');
+    }
+
+    function formatRepoName(name) {
+        return name
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
+    function showEmptyState() {
+        projectsGrid.innerHTML = `
+            <div class="col-span-full bg-slate-100/50 dark:bg-slate-900/30 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl p-12 text-center">
+                <div class="mb-4 inline-flex w-12 h-12 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500">
+                    <span class="material-icons">search_off</span>
+                </div>
+                <h4 class="text-lg font-bold mb-1">No Projects Found</h4>
+                <p class="text-slate-500 text-sm font-mono">No public repositories found on GitHub.</p>
+            </div>
+        `;
+    }
+
+    function showErrorState(errorMessage) {
+        projectsGrid.innerHTML = `
+            <div class="col-span-full bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl p-12 text-center">
+                <div class="mb-4 inline-flex w-12 h-12 items-center justify-center rounded-full bg-red-200 dark:bg-red-800 text-red-600 dark:text-red-400">
+                    <span class="material-icons">error</span>
+                </div>
+                <h4 class="text-lg font-bold mb-1 text-red-900 dark:text-red-300">Failed to Load Projects</h4>
+                <p class="text-red-700 dark:text-red-400 text-sm font-mono">${errorMessage}</p>
+                <button onclick="fetchGitHubProjects()" class="mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition-all">
+                    Retry
+                </button>
+            </div>
+        `;
+    }
+
+    // Fetch projects on page load
+    document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
+</script>
+
+</body>
+</html>

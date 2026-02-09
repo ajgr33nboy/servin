@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBSNBYKMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1SBSNBYKMD');
+</script>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title id="page-title">Project | Albert Weiner</title>
+<meta name="description" content="Project details by Albert Weiner - Infrastructure and security engineering work.">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<!-- Marked.js for Markdown parsing -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- Highlight.js for code syntax highlighting -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#135bec",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#101622",
+                },
+                fontFamily: {
+                    "display": ["Space Grotesk"],
+                    "mono": ["JetBrains Mono"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .blueprint-grid {
+        background-image: radial-gradient(circle, rgba(19, 91, 236, 0.1) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+    .glass-panel {
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-link {
+        position: relative;
+        transition: color 0.2s ease;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #135bec;
+        transition: width 0.2s ease;
+    }
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    /* Markdown Styling */
+    .markdown-content {
+        color: #94a3b8;
+        line-height: 1.75;
+    }
+
+    .markdown-content h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid rgba(19, 91, 236, 0.3);
+        letter-spacing: -0.02em;
+    }
+
+    .markdown-content h1:first-child {
+        margin-top: 0;
+    }
+
+    .markdown-content h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #135bec;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: -0.01em;
+    }
+
+    .markdown-content h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #cbd5e1;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .markdown-content h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #cbd5e1;
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .markdown-content h5, .markdown-content h6 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #cbd5e1;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .markdown-content p {
+        margin-bottom: 1.25rem;
+        line-height: 1.75;
+    }
+
+    .markdown-content ul, .markdown-content ol {
+        margin-bottom: 1.25rem;
+        padding-left: 2rem;
+    }
+
+    .markdown-content ul {
+        list-style-type: disc;
+    }
+
+    .markdown-content ol {
+        list-style-type: decimal;
+    }
+
+    .markdown-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.75;
+    }
+
+    .markdown-content li > ul,
+    .markdown-content li > ol {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .markdown-content a {
+        color: #135bec;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .markdown-content a:hover {
+        text-decoration: underline;
+        color: #3b82f6;
+    }
+
+    .markdown-content strong {
+        font-weight: 600;
+        color: #e2e8f0;
+    }
+
+    .markdown-content em {
+        font-style: italic;
+    }
+
+    .markdown-content code {
+        background: rgba(15, 23, 42, 0.8);
+        color: #5ac8fa;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        font-family: 'JetBrains Mono', monospace;
+        border: 1px solid rgba(19, 91, 236, 0.2);
+    }
+
+    .markdown-content pre {
+        background: #0f172a;
+        border: 1px solid rgba(19, 91, 236, 0.2);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+    }
+
+    .markdown-content pre code {
+        background: transparent;
+        color: #e2e8f0;
+        padding: 0;
+        border: none;
+        font-size: 0.875rem;
+        line-height: 1.7;
+    }
+
+    .markdown-content blockquote {
+        border-left: 4px solid #135bec;
+        padding-left: 1.5rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #94a3b8;
+        background: rgba(19, 91, 236, 0.05);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    .markdown-content blockquote p:last-child {
+        margin-bottom: 0;
+    }
+
+    .markdown-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+        border: 1px solid rgba(19, 91, 236, 0.2);
+    }
+
+    /* Badge images - display inline */
+    .markdown-content a img {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+        max-height: 28px;
+    }
+
+    /* Badge containers */
+    .markdown-content .badge-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.375rem;
+        margin: 1rem 0;
+    }
+
+    /* Images that look like badges (from shields.io, etc.) */
+    .markdown-content img[src*="shields.io"],
+    .markdown-content img[src*="badgen.net"],
+    .markdown-content img[src*="badge"],
+    .markdown-content img[alt*="badge" i],
+    .markdown-content img[alt*="shield" i] {
+        display: inline-block !important;
+        margin: 0 !important;
+        border: none !important;
+        border-radius: 0.25rem !important;
+        vertical-align: middle !important;
+        max-height: 28px;
+    }
+
+    /* Badge links should have minimal spacing */
+    .markdown-content a:has(img[src*="shields.io"]),
+    .markdown-content a:has(img[src*="badgen.net"]),
+    .markdown-content a:has(img[src*="badge"]) {
+        display: inline-block !important;
+        margin: 0 0.25rem 0 0 !important;
+        line-height: 1 !important;
+    }
+
+    /* Force any container with multiple badge links to be horizontal */
+    .markdown-content p:has(a img[src*="shields.io"]),
+    .markdown-content p:has(a img[src*="badgen.net"]),
+    .markdown-content p:has(a img[src*="badge"]),
+    .markdown-content div:has(a img[src*="shields.io"]),
+    .markdown-content div:has(a img[src*="badgen.net"]),
+    .markdown-content div:has(a img[src*="badge"]) {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 0.375rem !important;
+    }
+
+    /* Catch-all for any badge image */
+    .markdown-content img[src*="shields.io"],
+    .markdown-content img[src*="badgen.net"],
+    .markdown-content img[src*="badge"],
+    .markdown-content img[src*="img.shields"] {
+        display: inline-block !important;
+        margin: 0 !important;
+        vertical-align: middle !important;
+    }
+
+    .markdown-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+    }
+
+    .markdown-content th {
+        background: rgba(19, 91, 236, 0.1);
+        color: #135bec;
+        font-weight: 600;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(19, 91, 236, 0.2);
+    }
+
+    .markdown-content td {
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(71, 85, 105, 0.3);
+    }
+
+    .markdown-content tr:nth-child(even) {
+        background: rgba(15, 23, 42, 0.3);
+    }
+
+    .markdown-content hr {
+        border: none;
+        border-top: 1px solid rgba(19, 91, 236, 0.2);
+        margin: 2rem 0;
+    }
+
+    .markdown-content details {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: rgba(19, 91, 236, 0.05);
+        border: 1px solid rgba(19, 91, 236, 0.2);
+        border-radius: 0.5rem;
+    }
+
+    .markdown-content details summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #cbd5e1;
+        user-select: none;
+    }
+
+    .markdown-content details[open] summary {
+        margin-bottom: 1rem;
+        color: #135bec;
+    }
+
+    /* Task lists */
+    .markdown-content input[type="checkbox"] {
+        margin-right: 0.5rem;
+    }
+
+    /* Better spacing for nested lists */
+    .markdown-content ul ul,
+    .markdown-content ol ul,
+    .markdown-content ul ol,
+    .markdown-content ol ol {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+<!-- Fixed Navigation Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                <span class="material-icons text-white text-sm">architecture</span>
+            </div>
+            <a href="index.html" class="text-sm font-bold tracking-tight uppercase tracking-widest text-primary hover:opacity-80 transition-opacity">
+                Albert Weiner
+            </a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="projects.html" class="hidden md:flex items-center gap-2 text-sm text-slate-400 hover:text-primary transition-colors">
+                <span class="material-icons text-sm">arrow_back</span>
+                Back to Projects
+            </a>
+            <a href="https://cal.com/albert-weiner-jlsyg1" target="_blank" rel="noopener noreferrer" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded flex items-center gap-2 text-sm font-medium transition-all">
+                <span class="material-icons text-sm">calendar_today</span>
+                Schedule Call
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-[1600px] mx-auto flex flex-col lg:flex-row min-h-[calc(100vh-64px)]">
+    <!-- Main Content Area -->
+    <section class="flex-1 p-6 lg:p-10 blueprint-grid overflow-y-auto">
+        <!-- Loading State -->
+        <div id="loading-state" class="flex flex-col items-center justify-center py-20">
+            <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p class="text-slate-400 font-mono text-sm">Loading project from GitHub...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl p-12 text-center">
+                    <div class="mb-4 inline-flex w-16 h-16 items-center justify-center rounded-full bg-red-200 dark:bg-red-800 text-red-600 dark:text-red-400">
+                        <span class="material-icons text-4xl">error</span>
+                    </div>
+                    <h1 class="text-2xl font-bold mb-2 text-red-900 dark:text-red-300">Failed to Load Project</h1>
+                    <p id="error-message" class="text-red-700 dark:text-red-400 text-sm font-mono mb-4"></p>
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="location.reload()" class="px-6 py-3 bg-primary text-white rounded hover:bg-primary/90 transition-all">
+                            Retry
+                        </button>
+                        <a href="projects.html" class="px-6 py-3 border border-primary/40 text-primary rounded hover:bg-primary/10 transition-all">
+                            Back to Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Content -->
+        <div id="project-content" class="hidden">
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Project Header -->
+                <div class="border-l-4 border-primary pl-6 py-2">
+                    <h1 id="project-title" class="text-4xl font-bold mb-4"></h1>
+                    <p id="project-description" class="text-xl text-slate-400 mb-4"></p>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="material-icons text-slate-400 text-sm">calendar_today</span>
+                            <span id="project-updated" class="font-mono text-sm text-primary"></span>
+                        </div>
+                        <div id="project-topics" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- Project Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="glass-panel p-4 rounded-lg">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-icons text-primary text-sm">star</span>
+                            <span class="text-xs text-slate-500 uppercase font-mono">Stars</span>
+                        </div>
+                        <p id="project-stars" class="text-2xl font-bold text-primary">0</p>
+                    </div>
+                    <div class="glass-panel p-4 rounded-lg">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-icons text-primary text-sm">fork_right</span>
+                            <span class="text-xs text-slate-500 uppercase font-mono">Forks</span>
+                        </div>
+                        <p id="project-forks" class="text-2xl font-bold text-primary">0</p>
+                    </div>
+                    <div class="glass-panel p-4 rounded-lg">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-icons text-primary text-sm">visibility</span>
+                            <span class="text-xs text-slate-500 uppercase font-mono">Watchers</span>
+                        </div>
+                        <p id="project-watchers" class="text-2xl font-bold text-primary">0</p>
+                    </div>
+                    <div class="glass-panel p-4 rounded-lg">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-icons text-primary text-sm">code</span>
+                            <span class="text-xs text-slate-500 uppercase font-mono">Language</span>
+                        </div>
+                        <p id="project-language" class="text-sm font-bold text-primary truncate">N/A</p>
+                    </div>
+                </div>
+
+                <!-- README Content -->
+                <div>
+                    <div class="flex items-center gap-2 text-slate-500 uppercase tracking-widest text-xs font-bold mb-6">
+                        <span class="material-icons text-sm">description</span>
+                        README.md
+                    </div>
+                    <div id="readme-content" class="markdown-content bg-slate-900/30 border border-primary/20 rounded-xl p-8 md:p-10">
+                    </div>
+                </div>
+
+                <!-- GitHub Link -->
+                <div class="flex items-center justify-center pt-8 pb-12">
+                    <a id="github-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-all group">
+                        <span class="material-icons">code</span>
+                        <span>View on GitHub</span>
+                        <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Sidebar -->
+    <aside id="project-sidebar" class="hidden w-full lg:w-96 bg-white dark:bg-background-dark border-l border-slate-200 dark:border-slate-800 lg:sticky top-16 overflow-y-auto" style="max-height: calc(100vh - 4rem);">
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-8">
+                <span class="material-icons text-primary">source</span>
+                <h3 class="font-bold text-sm uppercase tracking-widest">Repository Info</h3>
+            </div>
+
+            <!-- Repository Details -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Details</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">schedule</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Last Updated</p>
+                            <p id="sidebar-updated" class="text-[11px] text-slate-500 font-mono"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">event</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Created</p>
+                            <p id="sidebar-created" class="text-[11px] text-slate-500 font-mono"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">code</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Primary Language</p>
+                            <p id="sidebar-language" class="text-[11px] text-slate-500 font-mono"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">security</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">License</p>
+                            <p id="sidebar-license" class="text-[11px] text-slate-500 font-mono"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topics -->
+            <div id="sidebar-topics-section" class="mb-8 hidden">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Topics</span>
+                </div>
+                <div id="sidebar-topics" class="flex flex-wrap gap-2">
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div class="mt-12 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                <div class="flex items-center gap-2 text-primary mb-3">
+                    <span class="material-icons text-sm">link</span>
+                    <span class="text-xs font-bold uppercase">Links</span>
+                </div>
+                <div class="space-y-2">
+                    <a id="sidebar-github" href="#" target="_blank" rel="noopener noreferrer" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        → GitHub Repository
+                    </a>
+                    <a id="sidebar-homepage" href="#" target="_blank" rel="noopener noreferrer" class="hidden text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        → Project Homepage
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/30 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+        <p class="text-sm text-slate-400 font-mono">
+            © 2025 Albert Weiner. Built with <span class="text-primary">Tailwind CSS</span>
+        </p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    const GITHUB_USERNAME = 'ajgreenboy';
+
+    // Get repo name from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const repoName = urlParams.get('repo');
+
+    if (!repoName) {
+        showError('No repository specified. Please provide a ?repo=name parameter.');
+    } else {
+        fetchProjectData(repoName);
+    }
+
+    async function fetchProjectData(repoName) {
+        try {
+            // Fetch repository data
+            const repoResponse = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`);
+            if (!repoResponse.ok) {
+                throw new Error(`Repository not found: ${repoName}`);
+            }
+            const repoData = await repoResponse.json();
+
+            // Fetch README
+            const readmeResponse = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/readme`, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3.raw'
+                }
+            });
+
+            let readmeContent = '';
+            if (readmeResponse.ok) {
+                readmeContent = await readmeResponse.text();
+            } else {
+                readmeContent = '# No README Available\n\nThis repository does not have a README.md file.';
+            }
+
+            displayProject(repoData, readmeContent);
+
+        } catch (error) {
+            console.error('Error fetching project:', error);
+            showError(error.message);
+        }
+    }
+
+    function displayProject(repo, readmeMarkdown) {
+        // Update page title
+        document.getElementById('page-title').textContent = `${formatRepoName(repo.name)} | Albert Weiner`;
+
+        // Show content, hide loading
+        document.getElementById('loading-state').classList.add('hidden');
+        document.getElementById('project-content').classList.remove('hidden');
+        document.getElementById('project-sidebar').classList.remove('hidden');
+
+        // Header info
+        document.getElementById('project-title').textContent = formatRepoName(repo.name);
+        document.getElementById('project-description').textContent = repo.description || 'No description provided.';
+
+        const updatedDate = new Date(repo.updated_at).toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        });
+        document.getElementById('project-updated').textContent = `Updated: ${updatedDate}`;
+
+        // Topics
+        if (repo.topics && repo.topics.length > 0) {
+            const topicsHtml = repo.topics.map(topic =>
+                `<span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">${topic}</span>`
+            ).join('');
+            document.getElementById('project-topics').innerHTML = topicsHtml;
+            document.getElementById('sidebar-topics').innerHTML = topicsHtml;
+            document.getElementById('sidebar-topics-section').classList.remove('hidden');
+        }
+
+        // Stats
+        document.getElementById('project-stars').textContent = repo.stargazers_count;
+        document.getElementById('project-forks').textContent = repo.forks_count;
+        document.getElementById('project-watchers').textContent = repo.watchers_count;
+        document.getElementById('project-language').textContent = repo.language || 'N/A';
+
+        // Sidebar info
+        const createdDate = new Date(repo.created_at).toLocaleDateString('en-US', {
+            month: 'long',
+            year: 'numeric'
+        });
+        document.getElementById('sidebar-created').textContent = createdDate;
+        document.getElementById('sidebar-updated').textContent = updatedDate;
+        document.getElementById('sidebar-language').textContent = repo.language || 'Not specified';
+        document.getElementById('sidebar-license').textContent = repo.license ? repo.license.name : 'No license';
+
+        // Links
+        document.getElementById('github-link').href = repo.html_url;
+        document.getElementById('sidebar-github').href = repo.html_url;
+
+        if (repo.homepage) {
+            const homepageLink = document.getElementById('sidebar-homepage');
+            homepageLink.href = repo.homepage;
+            homepageLink.classList.remove('hidden');
+        }
+
+        // Parse and display README
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                return hljs.highlightAuto(code).value;
+            },
+            breaks: true,
+            gfm: true
+        });
+
+        const htmlContent = marked.parse(readmeMarkdown);
+        document.getElementById('readme-content').innerHTML = htmlContent;
+
+        // Highlight code blocks
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightElement(block);
+        });
+
+        // Fix badge images layout - make them horizontal
+        fixBadgeLayout();
+    }
+
+    function fixBadgeLayout() {
+        const readmeContent = document.getElementById('readme-content');
+
+        // First pass: Style all badge images and their parent links
+        let badgeCount = 0;
+        readmeContent.querySelectorAll('img').forEach(img => {
+            // If it looks like a badge (shields.io, badgen.net, etc.)
+            const isBadge = img.src.includes('shields.io') ||
+                           img.src.includes('badgen.net') ||
+                           img.src.includes('badge') ||
+                           img.src.includes('img.shields') ||
+                           (img.alt && img.alt.toLowerCase().includes('badge'));
+
+            if (isBadge) {
+                badgeCount++;
+                img.style.setProperty('display', 'inline-block', 'important');
+                img.style.setProperty('margin', '0', 'important');
+                img.style.setProperty('border', 'none', 'important');
+                img.style.setProperty('border-radius', '0.25rem', 'important');
+                img.style.setProperty('vertical-align', 'middle', 'important');
+                img.style.setProperty('line-height', '1', 'important');
+                img.style.setProperty('max-height', '28px', 'important');
+
+                // Make parent link inline with minimal spacing
+                if (img.parentElement && img.parentElement.tagName === 'A') {
+                    img.parentElement.style.setProperty('display', 'inline-block', 'important');
+                    img.parentElement.style.setProperty('margin', '0 0.25rem 0.25rem 0', 'important');
+                    img.parentElement.style.setProperty('line-height', '1', 'important');
+                }
+            }
+        });
+
+        console.log(`Found ${badgeCount} badges`);
+
+        // Second pass: Find ALL containers with badge links (including EVERYTHING)
+        readmeContent.querySelectorAll('*').forEach(container => {
+            const badgeLinks = Array.from(container.children).filter(child => {
+                return child.tagName === 'A' &&
+                       child.querySelector('img') &&
+                       (child.querySelector('img').src.includes('shields.io') ||
+                        child.querySelector('img').src.includes('badgen.net') ||
+                        child.querySelector('img').src.includes('badge') ||
+                        child.querySelector('img').src.includes('img.shields'));
+            });
+
+            // If container has badge links, make it flexbox
+            if (badgeLinks.length >= 1) {
+                container.style.setProperty('display', 'flex', 'important');
+                container.style.setProperty('flex-wrap', 'wrap', 'important');
+                container.style.setProperty('align-items', 'center', 'important');
+                container.style.setProperty('gap', '0.375rem', 'important');
+
+                // Remove margins from badge links in flexbox
+                badgeLinks.forEach(link => {
+                    link.style.setProperty('margin', '0', 'important');
+                });
+
+                console.log(`Made container ${container.tagName} flexbox with ${badgeLinks.length} badges`);
+            }
+        });
+
+        // Fourth pass: Find sequences of badge links that are siblings and force their parent to flex
+        const allBadgeLinks = readmeContent.querySelectorAll('a img[src*="shields.io"], a img[src*="badgen.net"], a img[src*="badge"], a img[src*="img.shields"]');
+        allBadgeLinks.forEach(img => {
+            const link = img.parentElement;
+            if (link && link.tagName === 'A') {
+                const parent = link.parentElement;
+                if (parent) {
+                    // Check if parent has multiple badge links as children
+                    const siblingBadges = Array.from(parent.children).filter(child => {
+                        return child.tagName === 'A' && child.querySelector('img[src*="shields"], img[src*="badgen"], img[src*="badge"]');
+                    });
+
+                    if (siblingBadges.length >= 1) {
+                        parent.style.setProperty('display', 'flex', 'important');
+                        parent.style.setProperty('flex-wrap', 'wrap', 'important');
+                        parent.style.setProperty('align-items', 'center', 'important');
+                        parent.style.setProperty('gap', '0.375rem', 'important');
+                        console.log(`Fixed parent ${parent.tagName} with ${siblingBadges.length} badge siblings`);
+                    }
+                }
+            }
+        });
+
+        console.log('Badge layout fixing complete');
+    }
+
+    function formatRepoName(name) {
+        return name
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
+    function showError(message) {
+        document.getElementById('loading-state').classList.add('hidden');
+        document.getElementById('error-state').classList.remove('hidden');
+        document.getElementById('error-message').textContent = message;
+    }
+</script>
+
+</body>
+</html>

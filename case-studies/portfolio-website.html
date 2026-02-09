@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1SBSNBYKMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1SBSNBYKMD');
+</script>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio Website Case Study | Albert Weiner</title>
+<meta name="description" content="Modern dark blueprint portfolio redesign with Tailwind CSS and multi-page architecture.">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#135bec",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#101622",
+                },
+                fontFamily: {
+                    "display": ["Space Grotesk"],
+                    "mono": ["JetBrains Mono"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .blueprint-grid {
+        background-image: radial-gradient(circle, rgba(19, 91, 236, 0.1) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+    .glass-panel {
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-link {
+        position: relative;
+        transition: color 0.2s ease;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #135bec;
+        transition: width 0.2s ease;
+    }
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+<!-- Fixed Navigation Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                <span class="material-icons text-white text-sm">architecture</span>
+            </div>
+            <a href="../index.html" class="text-sm font-bold tracking-tight uppercase tracking-widest text-primary hover:opacity-80 transition-opacity">
+                Albert Weiner
+            </a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="../projects.html" class="hidden md:flex items-center gap-2 text-sm text-slate-400 hover:text-primary transition-colors">
+                <span class="material-icons text-sm">arrow_back</span>
+                Back to Projects
+            </a>
+            <a href="https://cal.com/albert-weiner-jlsyg1" target="_blank" rel="noopener noreferrer" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded flex items-center gap-2 text-sm font-medium transition-all">
+                <span class="material-icons text-sm">calendar_today</span>
+                Schedule Call
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-[1600px] mx-auto flex flex-col lg:flex-row min-h-[calc(100vh-64px)]">
+    <!-- Main Content Area -->
+    <section class="flex-1 p-6 lg:p-10 blueprint-grid overflow-y-auto">
+        <!-- Hero Image Placeholder -->
+        <div class="relative w-full aspect-[21/9] rounded-xl overflow-hidden border-2 border-dashed border-primary/40 bg-slate-100 dark:bg-slate-900/50 flex flex-col items-center justify-center mb-12">
+            <div class="text-center">
+                <span class="material-icons text-primary/40 text-6xl mb-4">web</span>
+                <p class="font-mono text-primary text-xl font-bold italic">Portfolio Website Architecture</p>
+                <p class="text-slate-400 text-xs mt-2 uppercase tracking-widest">Modern Dark Blueprint Design</p>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-12">
+            <!-- Title & Meta section -->
+            <div class="border-l-4 border-primary pl-6 py-2">
+                <h1 class="text-4xl font-bold mb-4">Portfolio Website</h1>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <div class="flex items-center gap-2">
+                        <span class="material-icons text-slate-400 text-sm">calendar_today</span>
+                        <span class="font-mono text-sm text-primary">Completed: February 2025</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">Tailwind CSS</span>
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">HTML5</span>
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">JavaScript</span>
+                        <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-mono">Responsive Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenge Statement Section -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 text-slate-500 uppercase tracking-widest text-xs font-bold">
+                    <span class="material-icons text-sm">description</span>
+                    The Challenge
+                </div>
+                <div class="p-8 glass-panel rounded-xl border-slate-200 dark:border-slate-800">
+                    <p class="text-xl leading-relaxed italic text-slate-600 dark:text-slate-400">
+                        "Transform a skeuomorphic iOS 6-inspired portfolio into a modern dark blueprint aesthetic while maintaining all existing content, improving content organization with multi-page architecture, and eliminating unused features—all without introducing build complexity or dependencies."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Key Results / Metrics Grid -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-2 text-slate-500 uppercase tracking-widest text-xs font-bold">
+                    <span class="material-icons text-sm">analytics</span>
+                    Key Results & KPIs
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Metric Card 1 -->
+                    <div class="p-6 rounded-xl border border-primary/10 bg-primary/5 relative group">
+                        <h4 class="text-4xl font-bold text-primary mb-1">0</h4>
+                        <p class="text-slate-500 text-sm font-medium">Build Dependencies</p>
+                        <div class="mt-4 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="w-full h-full bg-primary/40"></div>
+                        </div>
+                    </div>
+                    <!-- Metric Card 2 -->
+                    <div class="p-6 rounded-xl border border-primary/10 bg-primary/5 relative group">
+                        <h4 class="text-4xl font-bold text-primary mb-1">A+</h4>
+                        <p class="text-slate-500 text-sm font-medium">Lighthouse Score</p>
+                        <div class="mt-4 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="w-full h-full bg-primary/40"></div>
+                        </div>
+                    </div>
+                    <!-- Metric Card 3 -->
+                    <div class="p-6 rounded-xl border border-primary/10 bg-primary/5 relative group">
+                        <h4 class="text-4xl font-bold text-primary mb-1">3</h4>
+                        <p class="text-slate-500 text-sm font-medium">Page Architecture</p>
+                        <div class="mt-4 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="w-2/3 h-full bg-primary/40"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Deep-Dive Content -->
+            <div class="space-y-8 pb-20">
+                <div class="flex items-center gap-2 text-slate-500 uppercase tracking-widest text-xs font-bold">
+                    <span class="material-icons text-sm">article</span>
+                    Technical Deep-Dive
+                </div>
+
+                <!-- Project Overview -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        This portfolio website rebuild transformed a single-page skeuomorphic design into a modern multi-page architecture with a dark blueprint aesthetic. The redesign focused on improving content organization, removing unused features (homelab stats dashboard and contact form), and modernizing the visual language while preserving all personal information and professional credentials.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        The site is built with pure HTML, Tailwind CSS via CDN, and vanilla JavaScript—no build process required. This approach ensures fast load times, easy deployment, and minimal maintenance overhead.
+                    </p>
+                </div>
+
+                <!-- Design System -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Design System</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        The dark blueprint aesthetic uses electric blue (#135bec) as the primary accent color against a dark background (#101622). The design language draws inspiration from technical blueprints and cyberpunk aesthetics with glass morphism effects, grid patterns, and monospace typography for technical elements.
+                    </p>
+                    <div class="bg-slate-900 rounded-lg p-6 font-mono text-sm my-6 overflow-x-auto">
+                        <pre class="text-slate-300"><code>/* Core Design Tokens */
+--primary: #135bec;           /* Electric Blue */
+--background-dark: #101622;   /* Deep Navy */
+--background-light: #f6f6f8;  /* Light Gray */
+
+/* Typography */
+font-family: 'Space Grotesk', sans-serif;
+
+/* Glass Morphism Effect */
+.glass {
+  background: rgba(19, 91, 236, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(19, 91, 236, 0.2);
+}</code></pre>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Space Grotesk font provides a modern, geometric feel for display text while Material Icons supply consistent iconography throughout the interface.
+                    </p>
+                </div>
+
+                <!-- Architecture & Navigation -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Architecture & Navigation</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        The site uses a three-page architecture:
+                    </p>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li><strong class="text-primary">index.html:</strong> Main portfolio page with hero section, credentials badges, 6 skill cards, 3 featured projects, embedded resume PDF, and contact information.</li>
+                        <li><strong class="text-primary">projects.html:</strong> Projects listing page with filter/sort toolbar UI and project cards linking to detailed case studies.</li>
+                        <li><strong class="text-primary">case-studies/*.html:</strong> Individual project case studies with detailed technical breakdowns, metrics, and architecture explanations.</li>
+                    </ul>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">
+                        Fixed navigation header provides consistent access to Home, Projects, Resume, and Schedule Call CTA across all pages. Mobile navigation uses a slide-in drawer menu with smooth transitions.
+                    </p>
+                </div>
+
+                <!-- Content Migration -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Content Migration</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        All content from the original portfolio was carefully migrated and reorganized:
+                    </p>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li><strong class="text-primary">Personal Information:</strong> Name, location, email, phone, LinkedIn, GitHub, Cal.com scheduling link preserved and enhanced with card-based layout.</li>
+                        <li><strong class="text-primary">Credentials:</strong> Three associate degrees (Network Administration, Cybersecurity, Mathematics) displayed as prominent badges in hero section.</li>
+                        <li><strong class="text-primary">Skills:</strong> Six skill categories with technology tags migrated from original layout to modern card grid with hover effects.</li>
+                        <li><strong class="text-primary">Resume:</strong> PDF embedded with iframe and download link maintained, moved to organized assets directory.</li>
+                        <li><strong class="text-primary">Projects:</strong> Homelab infrastructure content expanded into detailed case study with technical deep-dive sections.</li>
+                    </ul>
+                </div>
+
+                <!-- Features Removed -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Features Removed</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Several features were intentionally removed to streamline the portfolio:
+                    </p>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li><strong class="text-primary">Homelab Stats Dashboard:</strong> Live stats integration removed (homelab-stats.json and collect-homelab-stats.py) as the information is better served in the detailed case study format.</li>
+                        <li><strong class="text-primary">Contact Form:</strong> Google Apps Script backend removed in favor of direct links to email, LinkedIn, and Cal.com scheduling.</li>
+                        <li><strong class="text-primary">Skeuomorphic Design System:</strong> Entire custom CSS design system (skeuomorphic-design-system.css) replaced with Tailwind CSS utility classes.</li>
+                    </ul>
+                </div>
+
+                <!-- Performance & Optimization -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Performance & Optimization</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Performance optimizations include:
+                    </p>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li><strong class="text-primary">Zero Build Process:</strong> No npm dependencies, no bundling, no transpilation—just static HTML/CSS/JS served directly.</li>
+                        <li><strong class="text-primary">CDN Delivery:</strong> Tailwind CSS and fonts loaded from CDN with proper caching headers.</li>
+                        <li><strong class="text-primary">Lazy Loading:</strong> Images and iframe content use native lazy loading attributes.</li>
+                        <li><strong class="text-primary">Minimal JavaScript:</strong> Only essential JavaScript for mobile menu toggle—no heavy frameworks or libraries.</li>
+                        <li><strong class="text-primary">Responsive Design:</strong> Mobile-first approach with breakpoints at 768px (md) and 1024px (lg) for optimal viewing on all devices.</li>
+                    </ul>
+                </div>
+
+                <!-- Lessons Learned -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Lessons Learned</h2>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li><strong class="text-primary">Content First:</strong> Starting with content organization and migration ensures no information is lost during redesign.</li>
+                        <li><strong class="text-primary">Design Systems:</strong> Using a mature design system (Tailwind CSS) accelerates development and ensures consistency.</li>
+                        <li><strong class="text-primary">Simplicity Wins:</strong> Removing unused features and complexity makes the site easier to maintain and faster to load.</li>
+                        <li><strong class="text-primary">Multi-Page Benefits:</strong> Breaking content into logical pages improves SEO and allows visitors to focus on specific areas of interest.</li>
+                        <li><strong class="text-primary">Template Reuse:</strong> Creating reusable templates for case studies enables rapid expansion of portfolio content.</li>
+                    </ul>
+                </div>
+
+                <!-- Future Enhancements -->
+                <div class="prose prose-slate dark:prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold text-primary mb-4">Future Enhancements</h2>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li><strong class="text-primary">Blog Functionality:</strong> Add markdown-based blog system for technical writing and project updates.</li>
+                        <li><strong class="text-primary">Project Filtering:</strong> Implement functional filter/sort on projects page by category, technology, or date.</li>
+                        <li><strong class="text-primary">Custom Diagrams:</strong> Create SVG architecture diagrams for case studies to visualize system designs.</li>
+                        <li><strong class="text-primary">Dark/Light Toggle:</strong> Add theme switcher for users who prefer light mode.</li>
+                        <li><strong class="text-primary">Analytics Dashboard:</strong> Create internal analytics dashboard to track portfolio performance metrics.</li>
+                    </ul>
+                </div>
+
+                <!-- GitHub Link -->
+                <div class="flex items-center justify-center pt-8">
+                    <a href="https://github.com/ajgreenboy" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-all group">
+                        <span class="material-icons">code</span>
+                        <span>View on GitHub</span>
+                        <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Sidebar -->
+    <aside class="w-full lg:w-96 bg-white dark:bg-background-dark border-l border-slate-200 dark:border-slate-800 lg:sticky top-0 overflow-y-auto lg:h-screen">
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-8">
+                <span class="material-icons text-primary">source</span>
+                <h3 class="font-bold text-sm uppercase tracking-widest">Tech Stack</h3>
+            </div>
+
+            <!-- Technology List -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Core Technologies</span>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">HTML5</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Semantic markup</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Tailwind CSS</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Utility-first CSS</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Vanilla JavaScript</p>
+                            <p class="text-[11px] text-slate-500 font-mono">No frameworks</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Space Grotesk</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Display typography</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-icons text-primary text-sm mt-1">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wide">Material Icons</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Icon library</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Stats -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Project Stats</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-3">
+                        <p class="text-[11px] font-mono text-slate-500 mb-1">Build Dependencies</p>
+                        <p class="text-2xl font-bold text-primary">0</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-3">
+                        <p class="text-[11px] font-mono text-slate-500 mb-1">Lighthouse Score</p>
+                        <p class="text-2xl font-bold text-green-500">A+</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-3">
+                        <p class="text-[11px] font-mono text-slate-500 mb-1">Page Count</p>
+                        <p class="text-2xl font-bold text-primary">3</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Notes -->
+            <div class="mt-12 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                <div class="flex items-center gap-2 text-primary mb-3">
+                    <span class="material-icons text-sm">palette</span>
+                    <span class="text-xs font-bold uppercase">Design Notes</span>
+                </div>
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+                    <p>Color palette inspired by technical blueprints and cyberpunk aesthetics.</p>
+                    <p class="font-mono text-primary">#135bec</p>
+                    <p class="font-mono text-primary">#101622</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/30 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+        <p class="text-sm text-slate-400 font-mono">
+            © 2025 Albert Weiner. Built with <span class="text-primary">Tailwind CSS</span>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
