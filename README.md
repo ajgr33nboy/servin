@@ -1,2 +1,5 @@
 # unfunky.xyz
-The brains of the whole operation!
+
+🚧 Under construction. 🚧
+
+The previous site has been removed. Live at https://www.unfunky.xyz
